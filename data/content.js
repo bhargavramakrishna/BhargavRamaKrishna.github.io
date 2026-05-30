@@ -39,10 +39,10 @@ const CONTENT = {
       }
     ],
     paragraphs: [
-      "I'm an <strong>AI & Software Developer</strong> specialising in building innovative AI systems and software solutions. My work focuses on <strong>LLM-powered applications</strong>, RAG pipelines, reinforcement learning agents, and backend APIs.",
-      "I completed my <strong>MSc in Computer Games & AI Programming</strong> at Kingston University with a Distinction, where my dissertation explored <strong>NPC decision-making using Utility AI and Deep Q-Learning</strong> — a project that really shaped how I think about intelligent systems.",
-      "I use AI-powered development tools like <strong>Claude, Cursor, and GitHub Copilot</strong> to move fast, while grounding every project in solid engineering fundamentals — clean structure, debugging discipline, and code I can defend and maintain.",
-      "Previously a <strong>Head Teacher at Code Camp</strong>, I taught 24–30 students per class in coding and computational thinking, boosting engagement by ~35–40%. That experience sharpened my communication and leadership skills in ways I bring to every team."
+      "I got into AI because I'm obsessed with one thing — taking hard, messy problems and building intelligent systems that actually solve them. Not theoretically. In production. End to end.",
+      "My day-to-day is building LLM-powered apps and AI products from scratch — from the first prompt to a working, deployable system. I work fast using tools like Claude, Cursor, and GitHub Copilot, but I never skip the fundamentals. Clean architecture, proper debugging, code I can defend.",
+      "I'm self-taught at heart. I don't wait for permission or the perfect course — I pick up what I need, build something real with it, and figure out the hard parts along the way. My MSc at Kingston gave me the theoretical foundation, but shipping projects is what actually taught me how to think.",
+      "Right now I'm looking for AI engineering roles where I can get my hands dirty — building LLM products, RAG pipelines, and intelligent agents that make a real difference."
     ]
   },
 
