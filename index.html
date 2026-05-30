@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Krishna Chitrala · AI & Software Developer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="data/content.js"></script>
+</head>
+<body>
+
+<canvas id="particleCanvas" style="position:fixed;inset:0;z-index:0;pointer-events:none;"></canvas>
+<div class="cursor" id="cursor"></div>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">KC://dev</a>
+  <ul class="nav-links">
+    <li><a href="#about">about</a></li>
+    <li><a href="#skills">skills</a></li>
+    <li><a href="#experience">experience</a></li>
+    <li><a href="#certs">certs</a></li>
+    <li><a href="#projects">projects</a></li>
+    <li><a href="#chat">ai</a></li>
+    <li><a href="#contact">contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-tag">
+      <div class="hero-tag-dot"></div>
+      <span id="heroAvailability"></span>
+    </div>
+    <h1 class="hero-name" id="heroName"></h1>
+    <p class="hero-role" id="heroRole"></p>
+    <p class="hero-location" id="heroLocation"></p>
+    <div class="hero-btns" id="heroBtns"></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-wrap">
+    <div class="section-label"></div>
+    <h2>Who I Am</h2>
+    <div class="about-grid">
+      <div id="aboutLeft"></div>
+      <div class="about-text" id="aboutText"></div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-wrap">
+    <div class="section-label">// 02 — skills</div>
+    <h2>Tech Stack</h2>
+    <div class="skills-categories" id="skillsContainer"></div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-wrap">
+    <div class="section-label">// 03 — experience</div>
+    <h2>Work History</h2>
+    <div class="exp-list" id="expList"></div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certs">
+  <div class="section-wrap">
+    <div class="section-label">// 04 — certifications</div>
+    <h2>Certifications</h2>
+    <div class="certs-grid" id="certsGrid"></div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-wrap">
+    <div class="section-label">// 05 — projects</div>
+    <h2>Selected Work</h2>
+    <div class="projects-grid" id="projectsGrid"></div>
+  </div>
+</section>
+
+<!-- AI CHAT -->
+<section id="chat">
+  <div class="section-wrap">
+    <div class="section-label">// 06 — ai assistant</div>
+    <h2>Ask Me Anything</h2>
+    <div class="chat-container">
+      <div class="chat-header">
+        <div class="chat-header-left">
+          <div class="chat-dot"></div>
+          <div>
+            <div class="chat-header-text">KC_ASSISTANT · ONLINE</div>
+            <div class="chat-header-sub">trained on krishna's full profile</div>
+          </div>
+        </div>
+      </div>
+      <div class="chat-messages" id="chatMessages">
+        <div class="chat-msg">
+          <div class="chat-avatar">AI</div>
+          <div class="chat-bubble">Hey! I'm an AI trained on everything about Krishna Chitrala. Ask me about his education, skills, projects, experience, or anything else — I'll answer instantly.</div>
+        </div>
+      </div>
+      <div class="chat-suggestions">
+        <button class="chat-suggest" onclick="sendSuggestion(this)">What's his education?</button>
+        <button class="chat-suggest" onclick="sendSuggestion(this)">What projects has he built?</button>
+        <button class="chat-suggest" onclick="sendSuggestion(this)">Does he know AI / ML?</button>
+        <button class="chat-suggest" onclick="sendSuggestion(this)">Is he available to hire?</button>
+        <button class="chat-suggest" onclick="sendSuggestion(this)">What games has he made?</button>
+      </div>
+      <div class="chat-input-row">
+        <input class="chat-input" id="chatInput" type="text" placeholder="Ask anything about Krishna..." />
+        <button class="chat-send" onclick="handleChat()">SEND →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-wrap">
+    <div class="section-label">// 07 — contact</div>
+    <h2>Let's Connect</h2>
+    <p class="contact-sub" id="contactSub"></p>
+    <div class="contact-links" id="contactLinks"></div>
+  </div>
+</section>
+
+<footer>
+  <span>KC://dev</span>
+  <span>Krishna Chitrala · 2025</span>
+  <span>Rugby, UK</span>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal" id="modalBox">
+    <button class="modal-close" onclick="closeModal()">✕ CLOSE</button>
+    <div class="modal-thumb">
+      <div class="modal-thumb-pattern"></div>
+      <div class="modal-thumb-icon" id="modalIcon"></div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-tags" id="modalTags"></div>
+      <div class="modal-title" id="modalTitle"></div>
+      <div class="modal-desc" id="modalDesc"></div>
+      <div class="modal-section">Links</div>
+      <div class="modal-links" id="modalLinks"></div>
+    </div>
+  </div>
+</div>
+
+<script src="js/particles.js"></script>
+<script src="js/projects.js"></script>
+<script src="js/chat.js"></script>
+</body>
+</html>
