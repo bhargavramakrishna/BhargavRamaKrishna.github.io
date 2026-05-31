@@ -141,7 +141,7 @@ async function callWorkerAPI(userMessage) {
     }
     
     const data = await response.json();
-    return data.reply || data.message || 'I couldn\'t generate a response. Please try again.';
+    return data.answer || 'I couldn\'t generate a response. Please try again.';
   } catch (error) {
     console.error('Chat API error:', error);
     return 'Sorry, I encountered an error connecting to my AI brain. Please try again in a moment!';
