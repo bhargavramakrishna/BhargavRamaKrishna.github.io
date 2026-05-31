@@ -28,6 +28,7 @@
     <li><a href="#certs" onclick="closeMenu()">certs</a></li>
     <li><a href="#projects" onclick="closeMenu()">projects</a></li>
     <li><a href="#chat" onclick="closeMenu()">ai</a></li>
+    <li><a href="#match" onclick="closeMenu()">match</a></li>
     <li><a href="#contact" onclick="closeMenu()">contact</a></li>
   </ul>
 </nav>
@@ -41,6 +42,7 @@
     <a href="#certs" onclick="closeMenu()">certs</a>
     <a href="#projects" onclick="closeMenu()">projects</a>
     <a href="#chat" onclick="closeMenu()">ai</a>
+    <a href="#match" onclick="closeMenu()">match</a>
     <a href="#contact" onclick="closeMenu()">contact</a>
   </div>
 </div>
@@ -145,10 +147,27 @@
   </div>
 </section>
 
+<!-- JOB MATCH -->
+<section id="match">
+  <div class="section-wrap">
+    <div class="section-label">// 07 — job match</div>
+    <h2>See How I Match Your Role</h2>
+    <p class="match-subtext">Paste a job description and instantly see how Krishna's skills align with your requirements</p>
+    <div class="match-container">
+      <textarea id="jobDescription" class="match-textarea" placeholder="Paste the job description here..."></textarea>
+      <div class="match-actions">
+        <button id="analyzeButton" class="match-button">ANALYZE ROLE →</button>
+        <div id="matchStatus" class="match-status"></div>
+      </div>
+      <div id="matchResults" class="match-results"></div>
+    </div>
+  </div>
+</section>
+
 <!-- CONTACT -->
 <section id="contact">
   <div class="section-wrap">
-    <div class="section-label">// 07 — contact</div>
+    <div class="section-label">// 08 — contact</div>
     <h2>Let's Connect</h2>
     <p class="contact-sub" id="contactSub"></p>
     <div class="contact-links" id="contactLinks"></div>

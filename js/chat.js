@@ -15,10 +15,13 @@ function closeMenu() {
 
 // Configuration
 const WORKER_URL = 'https://portfolio-chat.bhargavramkrishna.workers.dev';
+const MATCH_URL = `${WORKER_URL}/match`;
 const LINKEDIN_URL = 'https://www.linkedin.com/in/bhargav-rama-krishna-chitrala-1b36a2189';
 const MAX_QUESTIONS = 20;
 const HISTORY_LENGTH = 6;
 const DEBOUNCE_DELAY = 1000;
+const MIN_JOB_DESCRIPTION_LENGTH = 50;
+const MAX_JOB_DESCRIPTION_LENGTH = 3000;
 
 // State
 let conversationHistory = [];
@@ -163,6 +166,134 @@ async function callWorkerAPI(userMessage) {
   }
 }
 
+async function callMatchAPI(jobDescription) {
+  try {
+    const response = await fetch(MATCH_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ jobDescription }),
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(`API error: ${response.status} ${response.statusText} - ${errorText}`);
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error('Match API error:', error);
+    throw error;
+  }
+}
+
+function setMatchStatus(message, isError = false, includeRetry = false) {
+  const status = document.getElementById('matchStatus');
+  if (!status) return;
+  status.style.color = isError ? '#ffbaba' : '#8be9fd';
+  if (includeRetry) {
+    status.innerHTML = `${message} <button class="match-retry" type="button">Retry</button>`;
+    const retry = status.querySelector('.match-retry');
+    if (retry) {
+      retry.addEventListener('click', analyzeJobDescription);
+    }
+  } else {
+    status.textContent = message;
+  }
+}
+
+function clearMatchResults() {
+  const results = document.getElementById('matchResults');
+  if (results) results.innerHTML = '';
+}
+
+function createMatchCard(title, content, className) {
+  const card = document.createElement('div');
+  card.className = `match-card ${className}`;
+  card.innerHTML = `<h3>${title}</h3>${content}`;
+  return card;
+}
+
+function listMatchItems(items) {
+  if (!items || items.length === 0) return '<p>No details available.</p>';
+  return `<ul>${items.map(item => `<li>${item}</li>`).join('')}</ul>`;
+}
+
+function renderMatchResults(data) {
+  const results = document.getElementById('matchResults');
+  if (!results) return;
+  clearMatchResults();
+
+  const strongItems = Array.isArray(data.strongMatches) ? data.strongMatches : [];
+  const transferableItems = Array.isArray(data.transferableSkills) ? data.transferableSkills : [];
+  const growthItems = Array.isArray(data.growthAreas) ? data.growthAreas : [];
+  const summaryText = data.summary || 'Krishna brings a positive and adaptable mindset to every opportunity.';
+
+  const hasAnySkills = strongItems.length || transferableItems.length || growthItems.length;
+
+  if (!hasAnySkills) {
+    results.appendChild(createMatchCard('💬 OVERALL SUMMARY', `<p>Looks like a unique role! Krishna is a fast learner and adapts quickly to new requirements.</p>`, 'match-summary'));
+    return;
+  }
+
+  results.appendChild(createMatchCard('✅ STRONG MATCHES', listMatchItems(strongItems), 'match-strong'));
+  results.appendChild(createMatchCard('⚡ TRANSFERABLE SKILLS', listMatchItems(transferableItems), 'match-transferable'));
+  results.appendChild(createMatchCard('🚀 GROWTH AREAS', listMatchItems(growthItems), 'match-growth'));
+  results.appendChild(createMatchCard('💬 OVERALL SUMMARY', `<p>${summaryText}</p>`, 'match-summary'));
+}
+
+function setMatchLoading(isLoading) {
+  const button = document.getElementById('analyzeButton');
+  if (button) {
+    button.disabled = isLoading;
+    button.textContent = isLoading ? 'SCANNING...' : 'ANALYZE ROLE →';
+  }
+  const status = document.getElementById('matchStatus');
+  if (status) {
+    if (isLoading) {
+      status.textContent = 'Analyzing job description...';
+      status.style.color = '#00e8ff';
+    } else {
+      status.textContent = '';
+    }
+  }
+}
+
+async function analyzeJobDescription() {
+  const textarea = document.getElementById('jobDescription');
+  if (!textarea) return;
+
+  const rawText = textarea.value.trim();
+  if (!rawText) {
+    setMatchStatus('Please paste a job description first!', true);
+    clearMatchResults();
+    return;
+  }
+
+  if (rawText.length < MIN_JOB_DESCRIPTION_LENGTH) {
+    setMatchStatus('Please paste a more complete job description!', true);
+    clearMatchResults();
+    return;
+  }
+
+  const jobDescription = rawText.length > MAX_JOB_DESCRIPTION_LENGTH ? rawText.slice(0, MAX_JOB_DESCRIPTION_LENGTH) : rawText;
+
+  setMatchLoading(true);
+  clearMatchResults();
+
+  try {
+    const data = await callMatchAPI(jobDescription);
+    renderMatchResults(data);
+    setMatchStatus('Match analysis complete. Review the cards below.');
+  } catch (error) {
+    setMatchStatus('Something went wrong. Please try again.', true, true);
+    clearMatchResults();
+  } finally {
+    setMatchLoading(false);
+  }
+}
+
 // Handle chat submission
 async function handleChat() {
   // Check debounce
@@ -244,6 +375,21 @@ document.addEventListener('DOMContentLoaded', () => {
       if (e.key === 'Enter' && !e.shiftKey) {
         e.preventDefault();
         handleChat();
+      }
+    });
+  }
+
+  const analyzeButton = document.getElementById('analyzeButton');
+  if (analyzeButton) {
+    analyzeButton.addEventListener('click', analyzeJobDescription);
+  }
+
+  const jobDescription = document.getElementById('jobDescription');
+  if (jobDescription) {
+    jobDescription.addEventListener('keydown', e => {
+      if (e.key === 'Enter' && e.ctrlKey) {
+        e.preventDefault();
+        analyzeJobDescription();
       }
     });
   }
