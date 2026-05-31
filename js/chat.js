@@ -216,8 +216,13 @@ function createMatchCard(title, content, className) {
 }
 
 function listMatchItems(items) {
-  if (!items || items.length === 0) return '<p>No details available.</p>';
-  return `<ul>${items.map(item => `<li>${item}</li>`).join('')}</ul>`;
+  if (!items || items.length === 0) return '';
+  return `<ul>${items.map(item => {
+    if (typeof item === 'object' && item.skill) {
+      return `<li><strong>${item.skill}</strong> — ${item.context}</li>`;
+    }
+    return `<li>${item}</li>`;
+  }).join('')}</ul>`;
 }
 
 function renderMatchResults(data) {
@@ -226,7 +231,7 @@ function renderMatchResults(data) {
   clearMatchResults();
 
   const strongItems = Array.isArray(data.strongMatches) ? data.strongMatches : [];
-  const transferableItems = Array.isArray(data.transferableSkills) ? data.transferableSkills : [];
+  const transferableItems = Array.isArray(data.transferable) ? data.transferable : [];
   const growthItems = Array.isArray(data.growthAreas) ? data.growthAreas : [];
   const summaryText = data.summary || 'Krishna brings a positive and adaptable mindset to every opportunity.';
 
