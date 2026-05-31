@@ -16,16 +16,34 @@
 <!-- NAV -->
 <nav>
   <a class="nav-logo" href="#">KC://dev</a>
+  <button class="nav-hamburger" id="navHamburger" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
   <ul class="nav-links">
-    <li><a href="#about">about</a></li>
-    <li><a href="#skills">skills</a></li>
-    <li><a href="#experience">experience</a></li>
-    <li><a href="#certs">certs</a></li>
-    <li><a href="#projects">projects</a></li>
-    <li><a href="#chat">ai</a></li>
-    <li><a href="#contact">contact</a></li>
+    <li><a href="#about" onclick="closeMenu()">about</a></li>
+    <li><a href="#skills" onclick="closeMenu()">skills</a></li>
+    <li><a href="#experience" onclick="closeMenu()">experience</a></li>
+    <li><a href="#certs" onclick="closeMenu()">certs</a></li>
+    <li><a href="#projects" onclick="closeMenu()">projects</a></li>
+    <li><a href="#chat" onclick="closeMenu()">ai</a></li>
+    <li><a href="#contact" onclick="closeMenu()">contact</a></li>
   </ul>
 </nav>
+
+<!-- MOBILE MENU OVERLAY -->
+<div class="mobile-menu-overlay" id="mobileMenuOverlay">
+  <div class="mobile-menu">
+    <a href="#about" onclick="closeMenu()">about</a>
+    <a href="#skills" onclick="closeMenu()">skills</a>
+    <a href="#experience" onclick="closeMenu()">experience</a>
+    <a href="#certs" onclick="closeMenu()">certs</a>
+    <a href="#projects" onclick="closeMenu()">projects</a>
+    <a href="#chat" onclick="closeMenu()">ai</a>
+    <a href="#contact" onclick="closeMenu()">contact</a>
+  </div>
+</div>
 
 <!-- HERO -->
 <section id="hero">

@@ -1,3 +1,18 @@
+// MOBILE MENU
+function toggleMenu() {
+  const overlay = document.getElementById('mobileMenuOverlay');
+  if (overlay) {
+    overlay.classList.toggle('open');
+  }
+}
+
+function closeMenu() {
+  const overlay = document.getElementById('mobileMenuOverlay');
+  if (overlay) {
+    overlay.classList.remove('open');
+  }
+}
+
 // Configuration
 const WORKER_URL = 'https://portfolio-chat.bhargavramkrishna.workers.dev';
 const LINKEDIN_URL = 'https://www.linkedin.com/in/bhargav-rama-krishna-chitrala-1b36a2189';
