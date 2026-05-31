@@ -15,7 +15,7 @@ function closeMenu() {
 
 // Configuration
 const WORKER_URL = 'https://portfolio-chat.bhargavramkrishna.workers.dev';
-const MATCH_URL = `${WORKER_URL}/match`;
+const MATCH_URL = 'https://portfolio-jd-matcher.bhargavramkrishna.workers.dev';
 const LINKEDIN_URL = 'https://www.linkedin.com/in/bhargav-rama-krishna-chitrala-1b36a2189';
 const MAX_QUESTIONS = 20;
 const HISTORY_LENGTH = 6;
