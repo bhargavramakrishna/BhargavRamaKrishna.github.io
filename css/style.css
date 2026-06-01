@@ -548,13 +548,13 @@ h2 {
 #projects { border-top: 0.5px solid var(--border); }
 
 .projects-grid {
-  column-count: 3;
-  column-gap: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 10px;
+  gap: 1.5rem;
 }
 
 .project-card {
-  break-inside: avoid;
-  margin-bottom: 1.5rem;
   background: var(--card);
   border: 0.5px solid var(--border);
   cursor: crosshair;
@@ -1369,8 +1369,8 @@ footer span { color: var(--neon); }
 
   /* PROJECTS */
   .projects-grid {
-    column-count: 2;
-    column-gap: 1.2rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.2rem;
   }
 
   /* CERTIFICATIONS */
@@ -1736,8 +1736,8 @@ footer span { color: var(--neon); }
 
   /* PROJECTS */
   .projects-grid {
-    column-count: 1;
-    column-gap: 1rem;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1rem;
   }
 
   .project-card {

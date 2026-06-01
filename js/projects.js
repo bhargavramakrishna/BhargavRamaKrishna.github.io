@@ -74,6 +74,23 @@ function renderCerts() {
     </div>`).join('');
 }
 
+function applyMasonry() {
+  const grid = document.getElementById('projectsGrid');
+  if (!grid) return;
+  const style = window.getComputedStyle(grid);
+  const rowGap = parseInt(style.rowGap) || 24;
+  const rowHeight = parseInt(style.gridAutoRows) || 10;
+  grid.querySelectorAll('.project-card').forEach(card => {
+    card.style.gridRowEnd = '';
+  });
+  requestAnimationFrame(() => {
+    grid.querySelectorAll('.project-card').forEach(card => {
+      const rowSpan = Math.ceil((card.scrollHeight + rowGap) / (rowHeight + rowGap));
+      card.style.gridRowEnd = `span ${rowSpan}`;
+    });
+  });
+}
+
 function projectThumb(p) {
   if (p.image) {
     return `<img src="${p.image}" alt="${p.title}" style="width:100%;height:100%;object-fit:cover;">`;
@@ -102,6 +119,7 @@ async function renderProjects() {
           <div class="project-desc">${p.desc}</div>
         </div>
       </div>`).join('');
+    applyMasonry();
   } catch (e) {
     console.error('Failed to load projects:', e);
   }
@@ -149,6 +167,12 @@ function closeModal(e) {
 
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') closeModal({ target: document.getElementById('modalOverlay') });
+});
+
+let _masonryTimer;
+window.addEventListener('resize', () => {
+  clearTimeout(_masonryTimer);
+  _masonryTimer = setTimeout(applyMasonry, 150);
 });
 
 document.addEventListener('DOMContentLoaded', () => {
