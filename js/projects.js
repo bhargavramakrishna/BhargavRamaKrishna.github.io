@@ -78,7 +78,11 @@ function renderProjects() {
       <div class="project-arrow">↗</div>
       <div class="project-thumb">
         <div class="project-thumb-pattern"></div>
-        <div class="project-thumb-icon">${p.icon}</div>
+        <div class="project-thumb-icon">
+  ${p.icon && (p.icon.startsWith('../') || p.icon.startsWith('http') || p.icon.startsWith('/')) 
+    ? `<img src="${p.icon}" alt="${p.title}" style="width:100%;height:100%;object-fit:cover;">` 
+    : p.icon}
+</div>
       </div>
       <div class="project-body">
         <div class="project-tags">${p.tags.map(t => `<span class="project-tag">${t}</span>`).join('')}</div>
@@ -99,7 +103,13 @@ function renderContact() {
 
 function openModal(i) {
   const p = CONTENT.projects[i];
-  document.getElementById('modalIcon').textContent = p.icon;
+  const modalIcon = document.getElementById('modalIcon');
+  if (p.icon && (p.icon.startsWith('../') || p.icon.startsWith('http') || p.icon.startsWith('/'))) {
+  modalIcon.innerHTML = `<img src="${p.icon}" alt="${p.title}" style="width:100%;height:100%;object-fit:cover;">`;
+  } 
+  else {
+  modalIcon.textContent = p.icon;
+  }
   document.getElementById('modalTitle').textContent = p.title;
   document.getElementById('modalDesc').innerHTML = p.fullDesc
     .split('\n\n')

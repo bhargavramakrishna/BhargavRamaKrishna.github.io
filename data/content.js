@@ -17,10 +17,9 @@ const CONTENT = {
       { text: 'Ask AI About Me', href: '#chat', style: 'ghost' },
       { text: 'LinkedIn ↗', href: 'https://www.linkedin.com/in/bhargav-rama-krishna-chitrala-1b36a2189', style: 'ghost', target: '_blank' },
       { text: 'Contact', href: '#contact', style: 'ghost' },
-      {text: 'Project Timeline', href: 'pages/timeline.html', style: 'ghost' },
-      {text: 'Blog', href: 'pages/blog.html', style: 'ghost', },
-      {text: 'See How I Match Your Role', href: '#match', style: 'ghost' }
-    
+      { text: 'Project Timeline', href: 'pages/timeline.html', style: 'ghost' },
+      { text: 'Blog', href: 'pages/blog.html', style: 'ghost' },
+      { text: 'See How I Match Your Role', href: '#match', style: 'ghost' }
     ]
   },
 
@@ -118,7 +117,7 @@ const CONTENT = {
 
   projects: [
     {
-      icon: 'DCGAN',
+      icon: '../assets/images/gp.png',
       title: 'AI Dungeon Generator',
       tags: ['Unreal Engine', 'Python', 'DCGAN', 'Deep Learning', 'A* Pathfinding', 'Procedural Gen'],
       desc: 'AI-driven dungeon generation using Deep Convolutional GANs and procedural algorithms inside Unreal Engine.',
