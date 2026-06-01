@@ -6,6 +6,321 @@
   <title>Timeline · KC://dev</title>
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css">
+  <style>
+    /* ===== CENTERED TIMELINE ===== */
+
+    /* Type color variable per item */
+    .tl-project   { --tc: #00ffe0; }
+    .tl-job       { --tc: #7b5cff; }
+    .tl-cert      { --tc: #ffdd00; }
+    .tl-education { --tc: #00b8ff; }
+
+    /* Container + center line */
+    .tl-wrap {
+      position: relative;
+      margin-top: 2.5rem;
+      padding-bottom: 3rem;
+    }
+
+    .tl-wrap::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0; bottom: 0;
+      width: 2px;
+      transform: translateX(-50%);
+      background: linear-gradient(
+        to bottom,
+        rgba(0,255,224,0.9) 0%,
+        rgba(0,184,255,0.7) 30%,
+        rgba(123,92,255,0.6) 60%,
+        rgba(0,184,255,0.5) 80%,
+        rgba(0,255,224,0.3) 100%
+      );
+      box-shadow: 0 0 10px rgba(0,255,224,0.12);
+    }
+
+    /* Year badge row */
+    .tl-year-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 10;
+      margin: 2.2rem 0 0.8rem;
+    }
+
+    .tl-year-row:first-child { margin-top: 0; }
+
+    .tl-year-badge {
+      background: var(--bg);
+      border: 1.5px solid rgba(0,255,224,0.55);
+      color: var(--neon);
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 5px;
+      padding: 0.28rem 1.3rem;
+      text-transform: uppercase;
+      box-shadow: 0 0 18px rgba(0,255,224,0.12);
+    }
+
+    /* Item: 3-column grid — left area | dot col | right area */
+    .tl-item {
+      display: grid;
+      grid-template-columns: 1fr 56px 1fr;
+      align-items: flex-start;
+      margin-bottom: 1.1rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Dot column always in col 2 */
+    .tl-dot-col {
+      grid-column: 2;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding-top: 17px;
+      position: relative;
+      z-index: 5;
+    }
+
+    .tl-dot {
+      width: 17px;
+      height: 17px;
+      border-radius: 50%;
+      background: var(--tc, var(--neon));
+      border: 2px solid var(--bg);
+      box-shadow: 0 0 8px var(--tc, var(--neon));
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      flex-shrink: 0;
+    }
+
+    .tl-item:hover .tl-dot {
+      transform: scale(1.4);
+      box-shadow: 0 0 22px var(--tc, var(--neon));
+    }
+
+    .tl-current .tl-dot {
+      animation: tl-pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes tl-pulse {
+      0%, 100% { box-shadow: 0 0 8px #00ffe0, 0 0 16px rgba(0,255,224,0.25); transform: scale(1); }
+      50%       { box-shadow: 0 0 22px #00ffe0, 0 0 40px rgba(0,255,224,0.45); transform: scale(1.18); }
+    }
+
+    /* LEFT item: card in col 1, empty in col 3 */
+    .tl-left .tl-card-area {
+      grid-column: 1;
+      display: flex;
+      justify-content: flex-end;
+      padding-right: 20px;
+      position: relative;
+    }
+
+    .tl-left .tl-empty-area { grid-column: 3; }
+
+    /* Connector: right edge of left card area → dot */
+    .tl-left .tl-card-area::after {
+      content: '';
+      position: absolute;
+      right: 0; top: 24px;
+      width: 20px; height: 2px;
+      background: var(--tc, var(--neon));
+      box-shadow: 0 0 6px var(--tc, var(--neon));
+    }
+
+    /* RIGHT item: empty in col 1, card in col 3 */
+    .tl-right .tl-empty-area { grid-column: 1; }
+
+    .tl-right .tl-card-area {
+      grid-column: 3;
+      display: flex;
+      justify-content: flex-start;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    /* Connector: dot → left edge of right card area */
+    .tl-right .tl-card-area::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 24px;
+      width: 20px; height: 2px;
+      background: var(--tc, var(--neon));
+      box-shadow: 0 0 6px var(--tc, var(--neon));
+    }
+
+    /* Card */
+    .tl-card {
+      width: 100%;
+      background: rgba(11,18,28,0.72);
+      border: 0.5px solid rgba(255,255,255,0.06);
+      padding: 1.1rem 1.25rem;
+      transition: border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+    }
+
+    /* Top accent line */
+    .tl-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: var(--tc, var(--neon));
+      opacity: 0.25;
+      transition: opacity 0.3s;
+    }
+
+    .tl-item:hover .tl-card {
+      border-color: var(--tc, var(--neon));
+      background: rgba(11,18,28,0.94);
+      box-shadow: 0 0 28px rgba(0,255,224,0.05), 0 6px 24px rgba(0,0,0,0.3);
+    }
+
+    .tl-item:hover .tl-card::before { opacity: 0.9; }
+
+    .tl-card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .tl-card-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.3;
+      flex: 1;
+    }
+
+    .tl-card-date {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      color: var(--tc, var(--neon));
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      padding-top: 2px;
+    }
+
+    .tl-card-desc {
+      font-family: var(--mono);
+      font-size: 0.74rem;
+      color: var(--muted);
+      line-height: 1.5;
+      margin-bottom: 0.7rem;
+    }
+
+    .tl-card-tags {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+    }
+
+    .tl-tag {
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 0.18rem 0.5rem;
+      border: 0.5px solid;
+    }
+
+    .tl-tag-project   { color: #00ffe0; border-color: rgba(0,255,224,0.45); background: rgba(0,255,224,0.04); }
+    .tl-tag-job       { color: #7b5cff; border-color: rgba(123,92,255,0.45); background: rgba(123,92,255,0.04); }
+    .tl-tag-cert      { color: #ffdd00; border-color: rgba(255,221,0,0.45); background: rgba(255,221,0,0.04); }
+    .tl-tag-education { color: #00b8ff; border-color: rgba(0,184,255,0.45); background: rgba(0,184,255,0.04); }
+    .tl-tag-current   {
+      color: #00ffe0;
+      border-color: rgba(0,255,224,0.6);
+      background: rgba(0,255,224,0.08);
+      animation: tl-tag-glow 2s ease-in-out infinite;
+    }
+
+    @keyframes tl-tag-glow {
+      0%, 100% { box-shadow: 0 0 4px rgba(0,255,224,0.15); }
+      50%       { box-shadow: 0 0 10px rgba(0,255,224,0.45); }
+    }
+
+    /* Entrance animations */
+    .tl-left  { animation: tl-from-left  0.55s ease-out backwards; }
+    .tl-right { animation: tl-from-right 0.55s ease-out backwards; }
+
+    @keyframes tl-from-left  { from { opacity: 0; transform: translateX(-22px); } to { opacity: 1; transform: none; } }
+    @keyframes tl-from-right { from { opacity: 0; transform: translateX(22px);  } to { opacity: 1; transform: none; } }
+
+    /* ===== MOBILE ≤ 768px: line moves to left, all cards on right ===== */
+    @media (max-width: 768px) {
+      .tl-wrap::before {
+        left: 18px;
+        transform: none;
+      }
+
+      #timeline .section-wrap {
+        padding: 4rem 1rem 4rem 1rem;
+      }
+
+      .tl-item {
+        grid-template-columns: 40px 1fr;
+      }
+
+      /* Force dot to col 1, card to col 2 for both left and right */
+      .tl-left  .tl-dot-col,
+      .tl-right .tl-dot-col  { grid-column: 1; grid-row: 1; }
+
+      .tl-left  .tl-card-area,
+      .tl-right .tl-card-area {
+        grid-column: 2; grid-row: 1;
+        padding-left: 14px;
+        padding-right: 0;
+        justify-content: flex-start;
+      }
+
+      .tl-empty-area { display: none; }
+
+      /* Desktop left connector off; mobile left connector on */
+      .tl-left .tl-card-area::after { display: none; }
+
+      .tl-left .tl-card-area::before {
+        content: '';
+        position: absolute;
+        left: 0; top: 24px;
+        width: 14px; height: 2px;
+        background: var(--tc, var(--neon));
+        box-shadow: 0 0 4px var(--tc, var(--neon));
+      }
+
+      .tl-right .tl-card-area::before { width: 14px; }
+
+      .tl-year-row {
+        justify-content: flex-start;
+        padding-left: 56px;
+        margin: 1.5rem 0 0.5rem;
+      }
+
+      .tl-year-badge { font-size: 0.62rem; padding: 0.22rem 0.85rem; letter-spacing: 3px; }
+
+      .tl-dot { width: 13px; height: 13px; }
+
+      /* Simpler animation on mobile */
+      .tl-left, .tl-right { animation: tl-fadein 0.45s ease-out backwards; }
+      @keyframes tl-fadein { from { opacity: 0; } to { opacity: 1; } }
+    }
+
+    @media (max-width: 480px) {
+      .tl-wrap::before { left: 15px; }
+      .tl-item { grid-template-columns: 34px 1fr; }
+      .tl-year-row { padding-left: 48px; }
+      .tl-card { padding: 0.9rem 1rem; }
+      .tl-card-title { font-size: 0.84rem; }
+      .tl-card-desc  { font-size: 0.7rem; }
+    }
+  </style>
 </head>
 <body>
 
@@ -15,26 +330,24 @@
 <nav>
   <a class="nav-logo" href="../index.html">KC://dev</a>
   <button class="nav-hamburger" id="navHamburger" onclick="toggleMenu()">
-    <span></span>
-    <span></span>
-    <span></span>
+    <span></span><span></span><span></span>
   </button>
   <ul class="nav-links">
-    <li><a href="../index.html" onclick="closeMenu()">KC:dev</a></li>
-    <li><a href="about.html" onclick="closeMenu()">about</a></li>
-    <li><a href="experience.html" onclick="closeMenu()">experience</a></li>
-    <li><a href="timeline.html" onclick="closeMenu()">timeline</a></li>
-    <li><a href="blog.html" onclick="closeMenu()">blog</a></li>
+    <li><a href="../index.html"      onclick="closeMenu()">KC:dev</a></li>
+    <li><a href="about.html"         onclick="closeMenu()">about</a></li>
+    <li><a href="experience.html"    onclick="closeMenu()">experience</a></li>
+    <li><a href="timeline.html"      onclick="closeMenu()">timeline</a></li>
+    <li><a href="blog.html"          onclick="closeMenu()">blog</a></li>
   </ul>
 </nav>
 
 <div class="mobile-menu-overlay" id="mobileMenuOverlay">
   <div class="mobile-menu">
-    <a href="../index.html" onclick="closeMenu()">KC:dev</a>
-    <a href="about.html" onclick="closeMenu()">about</a>
+    <a href="../index.html"   onclick="closeMenu()">KC:dev</a>
+    <a href="about.html"      onclick="closeMenu()">about</a>
     <a href="experience.html" onclick="closeMenu()">experience</a>
-    <a href="timeline.html" onclick="closeMenu()">timeline</a>
-    <a href="blog.html" onclick="closeMenu()">blog</a>
+    <a href="timeline.html"   onclick="closeMenu()">timeline</a>
+    <a href="blog.html"       onclick="closeMenu()">blog</a>
   </div>
 </div>
 
@@ -44,267 +357,360 @@
   <div class="section-wrap">
     <div class="section-label">// timeline</div>
     <h2>Career Timeline</h2>
-    <div class="timeline-vertical">
-      <div class="timeline-vertical-line"></div>
 
-      <!-- 2026 -->
-      <div class="timeline-year-group">
-        <div class="timeline-year-mark">2026</div>
-        
-        <div class="timeline-event timeline-event-current">
-          <div class="timeline-dot"></div>
-          <div class="timeline-connector"></div>
-          <div class="timeline-card">
-            <div class="timeline-card-title">AI Scam Detection Project</div>
-            <div class="timeline-card-desc">Currently in development</div>
-            <div class="timeline-card-tags">
-              <span class="timeline-tag tag-project">PROJECT</span>
-              <span class="timeline-tag tag-current">CURRENT</span>
+    <div class="tl-wrap">
+
+      <!-- ━━━ 2026 ━━━ -->
+      <div class="tl-year-row"><div class="tl-year-badge">2026</div></div>
+
+      <!-- 1 LEFT · AI Scam Detection [PROJECT][CURRENT] -->
+      <div class="tl-item tl-left tl-project tl-current">
+        <div class="tl-card-area">
+          <div class="tl-card">
+            <div class="tl-card-header">
+              <div class="tl-card-title">AI Scam Detection Project</div>
+              <div class="tl-card-date">2026</div>
+            </div>
+            <div class="tl-card-desc">Currently in development</div>
+            <div class="tl-card-tags">
+              <span class="tl-tag tl-tag-project">PROJECT</span>
+              <span class="tl-tag tl-tag-current">CURRENT</span>
+            </div>
+          </div>
+        </div>
+        <div class="tl-dot-col"><div class="tl-dot"></div></div>
+        <div class="tl-empty-area"></div>
+      </div>
+
+      <!-- ━━━ 2025 ━━━ -->
+      <div class="tl-year-row"><div class="tl-year-badge">2025</div></div>
+
+      <!-- 2 RIGHT · 1 Million Prompters [CERT] -->
+      <div class="tl-item tl-right tl-cert">
+        <div class="tl-empty-area"></div>
+        <div class="tl-dot-col"><div class="tl-dot"></div></div>
+        <div class="tl-card-area">
+          <div class="tl-card">
+            <div class="tl-card-header">
+              <div class="tl-card-title">1 Million Prompters — Prompt Engineering</div>
+              <div class="tl-card-date">Sep 2025</div>
+            </div>
+            <div class="tl-card-desc">Dubai Future Foundation</div>
+            <div class="tl-card-tags">
+              <span class="tl-tag tl-tag-cert">CERT</span>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- 2025 -->
-      <div class="timeline-year-group">
-        <div class="timeline-year-mark">2025</div>
-        
-        <div class="timeline-event">
-          <div class="timeline-dot"></div>
-          <div class="timeline-connector"></div>
-          <div class="timeline-card">
-            <div class="timeline-card-title">1 Million Prompters — Prompt Engineering</div>
-            <div class="timeline-card-desc">Dubai Future Foundation</div>
-            <div class="timeline-card-tags">
-              <span class="timeline-tag tag-cert">CERT</span>
+      <!-- 3 LEFT · Quantium [CERT] -->
+      <div class="tl-item tl-left tl-cert">
+        <div class="tl-card-area">
+          <div class="tl-card">
+            <div class="tl-card-header">
+              <div class="tl-card-title">Quantium Software Engineering Simulation</div>
+              <div class="tl-card-date">Dec 2025</div>
+            </div>
+            <div class="tl-card-desc">Forage · Dec 2025</div>
+            <div class="tl-card-tags">
+              <span class="tl-tag tl-tag-cert">CERT</span>
             </div>
           </div>
         </div>
+        <div class="tl-dot-col"><div class="tl-dot"></div></div>
+        <div class="tl-empty-area"></div>
+      </div>
 
-        <div class="timeline-event">
-          <div class="timeline-dot"></div>
-          <div class="timeline-connector"></div>
-          <div class="timeline-card">
-            <div class="timeline-card-title">Quantium Software Engineering Job Simulation</div>
-            <div class="timeline-card-desc">Forage · Dec 2025</div>
-            <div class="timeline-card-tags">
-              <span class="timeline-tag tag-cert">CERT</span>
+      <!-- 4 RIGHT · Freelance AI [JOB] -->
+      <div class="tl-item tl-right tl-job">
+        <div class="tl-empty-area"></div>
+        <div class="tl-dot-col"><div class="tl-dot"></div></div>
+        <div class="tl-card-area">
+          <div class="tl-card">
+            <div class="tl-card-header">
+              <div class="tl-card-title">Freelance AI &amp; Software Developer</div>
+              <div class="tl-card-date">Feb 2025 – Present</div>
             </div>
-          </div>
-        </div>
-
-        <div class="timeline-event">
-          <div class="timeline-dot"></div>
-          <div class="timeline-connector"></div>
-          <div class="timeline-card">
-            <div class="timeline-card-title">Freelance AI & Software Developer</div>
-            <div class="timeline-card-desc">Building LLM apps, RAG pipelines and AI products</div>
-            <div class="timeline-card-tags">
-              <span class="timeline-tag tag-job">JOB</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="timeline-event">
-          <div class="timeline-dot"></div>
-          <div class="timeline-connector"></div>
-          <div class="timeline-card">
-            <div class="timeline-card-title">Built AI-Powered Portfolio</div>
-            <div class="timeline-card-desc">Full stack portfolio with AI chat and JD matcher</div>
-            <div class="timeline-card-tags">
-              <span class="timeline-tag tag-project">PROJECT</span>
+            <div class="tl-card-desc">Building LLM apps, RAG pipelines and AI products</div>
+            <div class="tl-card-tags">
+              <span class="tl-tag tl-tag-job">JOB</span>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- 2024 -->
-      <div class="timeline-year-group">
-        <div class="timeline-year-mark">2024</div>
-        
-        <div class="timeline-event">
-          <div class="timeline-dot"></div>
-          <div class="timeline-connector"></div>
-          <div class="timeline-card">
-            <div class="timeline-card-title">AI Dungeon Generator</div>
-            <div class="timeline-card-desc">DCGAN + Unreal Engine + A* Pathfinding</div>
-            <div class="timeline-card-tags">
-              <span class="timeline-tag tag-project">PROJECT</span>
+      <!-- 5 LEFT · Built AI-Powered Portfolio [PROJECT] -->
+      <div class="tl-item tl-left tl-project">
+        <div class="tl-card-area">
+          <div class="tl-card">
+            <div class="tl-card-header">
+              <div class="tl-card-title">Built AI-Powered Portfolio</div>
+              <div class="tl-card-date">2025</div>
+            </div>
+            <div class="tl-card-desc">Full stack portfolio with AI chat and JD matcher</div>
+            <div class="tl-card-tags">
+              <span class="tl-tag tl-tag-project">PROJECT</span>
             </div>
           </div>
         </div>
+        <div class="tl-dot-col"><div class="tl-dot"></div></div>
+        <div class="tl-empty-area"></div>
+      </div>
 
-        <div class="timeline-event">
-          <div class="timeline-dot"></div>
-          <div class="timeline-connector"></div>
-          <div class="timeline-card">
-            <div class="timeline-card-title">GA Enemies — Adaptive Game AI</div>
-            <div class="timeline-card-desc">Genetic Algorithm + Unity</div>
-            <div class="timeline-card-tags">
-              <span class="timeline-tag tag-project">PROJECT</span>
+      <!-- ━━━ 2024 ━━━ -->
+      <div class="tl-year-row"><div class="tl-year-badge">2024</div></div>
+
+      <!-- 6 RIGHT · AI Dungeon Generator [PROJECT] -->
+      <div class="tl-item tl-right tl-project">
+        <div class="tl-empty-area"></div>
+        <div class="tl-dot-col"><div class="tl-dot"></div></div>
+        <div class="tl-card-area">
+          <div class="tl-card">
+            <div class="tl-card-header">
+              <div class="tl-card-title">AI Dungeon Generator</div>
+              <div class="tl-card-date">Jun – Aug 2024</div>
             </div>
-          </div>
-        </div>
-
-        <div class="timeline-event">
-          <div class="timeline-dot"></div>
-          <div class="timeline-connector"></div>
-          <div class="timeline-card">
-            <div class="timeline-card-title">Game Programmer @ [P1] Games</div>
-            <div class="timeline-card-desc">Led 3 complete game projects in Unity/C#</div>
-            <div class="timeline-card-tags">
-              <span class="timeline-tag tag-job">JOB</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="timeline-event">
-          <div class="timeline-dot"></div>
-          <div class="timeline-connector"></div>
-          <div class="timeline-card">
-            <div class="timeline-card-title">Graduated MSc with Distinction 🎓</div>
-            <div class="timeline-card-desc">Computer Games & AI Programming · Kingston University</div>
-            <div class="timeline-card-tags">
-              <span class="timeline-tag tag-education">EDUCATION</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="timeline-event">
-          <div class="timeline-dot"></div>
-          <div class="timeline-connector"></div>
-          <div class="timeline-card">
-            <div class="timeline-card-title">Head Teacher @ Code Camp</div>
-            <div class="timeline-card-desc">Taught 24-30 students per class in coding</div>
-            <div class="timeline-card-tags">
-              <span class="timeline-tag tag-job">JOB</span>
+            <div class="tl-card-desc">DCGAN + Unreal Engine + A* Pathfinding</div>
+            <div class="tl-card-tags">
+              <span class="tl-tag tl-tag-project">PROJECT</span>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- 2023 -->
-      <div class="timeline-year-group">
-        <div class="timeline-year-mark">2023</div>
-        
-        <div class="timeline-event">
-          <div class="timeline-dot"></div>
-          <div class="timeline-connector"></div>
-          <div class="timeline-card">
-            <div class="timeline-card-title">Started MSc Computer Games & AI Programming</div>
-            <div class="timeline-card-desc">Kingston University London</div>
-            <div class="timeline-card-tags">
-              <span class="timeline-tag tag-education">EDUCATION</span>
+      <!-- 7 LEFT · GA Enemies [PROJECT] -->
+      <div class="tl-item tl-left tl-project">
+        <div class="tl-card-area">
+          <div class="tl-card">
+            <div class="tl-card-header">
+              <div class="tl-card-title">GA Enemies — Adaptive Game AI</div>
+              <div class="tl-card-date">Feb – Apr 2024</div>
+            </div>
+            <div class="tl-card-desc">Genetic Algorithm + Unity</div>
+            <div class="tl-card-tags">
+              <span class="tl-tag tl-tag-project">PROJECT</span>
+            </div>
+          </div>
+        </div>
+        <div class="tl-dot-col"><div class="tl-dot"></div></div>
+        <div class="tl-empty-area"></div>
+      </div>
+
+      <!-- 8 RIGHT · Game Programmer [JOB] -->
+      <div class="tl-item tl-right tl-job">
+        <div class="tl-empty-area"></div>
+        <div class="tl-dot-col"><div class="tl-dot"></div></div>
+        <div class="tl-card-area">
+          <div class="tl-card">
+            <div class="tl-card-header">
+              <div class="tl-card-title">Game Programmer @ [P1] Games</div>
+              <div class="tl-card-date">Sep 2024 – Jan 2025</div>
+            </div>
+            <div class="tl-card-desc">Led 3 complete game projects in Unity/C#</div>
+            <div class="tl-card-tags">
+              <span class="tl-tag tl-tag-job">JOB</span>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- 2022 -->
-      <div class="timeline-year-group">
-        <div class="timeline-year-mark">2022</div>
-        
-        <div class="timeline-event">
-          <div class="timeline-dot"></div>
-          <div class="timeline-connector"></div>
-          <div class="timeline-card">
-            <div class="timeline-card-title">Sentiment Analysis NLP Project</div>
-            <div class="timeline-card-desc">Natural Language Processing project</div>
-            <div class="timeline-card-tags">
-              <span class="timeline-tag tag-project">PROJECT</span>
+      <!-- 9 LEFT · Graduated MSc [EDUCATION] -->
+      <div class="tl-item tl-left tl-education">
+        <div class="tl-card-area">
+          <div class="tl-card">
+            <div class="tl-card-header">
+              <div class="tl-card-title">Graduated MSc with Distinction 🎓</div>
+              <div class="tl-card-date">Sep 2024</div>
+            </div>
+            <div class="tl-card-desc">Computer Games &amp; AI Programming · Kingston University</div>
+            <div class="tl-card-tags">
+              <span class="tl-tag tl-tag-education">EDUCATION</span>
             </div>
           </div>
         </div>
+        <div class="tl-dot-col"><div class="tl-dot"></div></div>
+        <div class="tl-empty-area"></div>
+      </div>
 
-        <div class="timeline-event">
-          <div class="timeline-dot"></div>
-          <div class="timeline-connector"></div>
-          <div class="timeline-card">
-            <div class="timeline-card-title">Completed CCBP Full Stack Intensive</div>
-            <div class="timeline-card-desc">NxtWave · Full Stack Development</div>
-            <div class="timeline-card-tags">
-              <span class="timeline-tag tag-education">EDUCATION</span>
+      <!-- 10 RIGHT · Head Teacher [JOB] -->
+      <div class="tl-item tl-right tl-job">
+        <div class="tl-empty-area"></div>
+        <div class="tl-dot-col"><div class="tl-dot"></div></div>
+        <div class="tl-card-area">
+          <div class="tl-card">
+            <div class="tl-card-header">
+              <div class="tl-card-title">Head Teacher @ Code Camp</div>
+              <div class="tl-card-date">Apr 2024 – Jul 2025</div>
+            </div>
+            <div class="tl-card-desc">Taught 24-30 students per class in coding</div>
+            <div class="tl-card-tags">
+              <span class="tl-tag tl-tag-job">JOB</span>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- 2021 -->
-      <div class="timeline-year-group">
-        <div class="timeline-year-mark">2021</div>
-        
-        <div class="timeline-event">
-          <div class="timeline-dot"></div>
-          <div class="timeline-connector"></div>
-          <div class="timeline-card">
-            <div class="timeline-card-title">Started CCBP Full Stack Development</div>
-            <div class="timeline-card-desc">NxtWave Intensive Programme</div>
-            <div class="timeline-card-tags">
-              <span class="timeline-tag tag-education">EDUCATION</span>
+      <!-- ━━━ 2023 ━━━ -->
+      <div class="tl-year-row"><div class="tl-year-badge">2023</div></div>
+
+      <!-- 11 LEFT · Started MSc [EDUCATION] -->
+      <div class="tl-item tl-left tl-education">
+        <div class="tl-card-area">
+          <div class="tl-card">
+            <div class="tl-card-header">
+              <div class="tl-card-title">Started MSc Computer Games &amp; AI Programming</div>
+              <div class="tl-card-date">Sep 2023</div>
+            </div>
+            <div class="tl-card-desc">Kingston University London</div>
+            <div class="tl-card-tags">
+              <span class="tl-tag tl-tag-education">EDUCATION</span>
             </div>
           </div>
         </div>
+        <div class="tl-dot-col"><div class="tl-dot"></div></div>
+        <div class="tl-empty-area"></div>
+      </div>
 
-        <div class="timeline-event">
-          <div class="timeline-dot"></div>
-          <div class="timeline-connector"></div>
-          <div class="timeline-card">
-            <div class="timeline-card-title">VMware Network Virtualization Concepts</div>
-            <div class="timeline-card-desc">VMware IT Academy</div>
-            <div class="timeline-card-tags">
-              <span class="timeline-tag tag-cert">CERT</span>
+      <!-- ━━━ 2022 ━━━ -->
+      <div class="tl-year-row"><div class="tl-year-badge">2022</div></div>
+
+      <!-- 12 RIGHT · Sentiment Analysis [PROJECT] -->
+      <div class="tl-item tl-right tl-project">
+        <div class="tl-empty-area"></div>
+        <div class="tl-dot-col"><div class="tl-dot"></div></div>
+        <div class="tl-card-area">
+          <div class="tl-card">
+            <div class="tl-card-header">
+              <div class="tl-card-title">Sentiment Analysis NLP Project</div>
+              <div class="tl-card-date">2022</div>
+            </div>
+            <div class="tl-card-desc">Natural Language Processing project</div>
+            <div class="tl-card-tags">
+              <span class="tl-tag tl-tag-project">PROJECT</span>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- 2020 -->
-      <div class="timeline-year-group">
-        <div class="timeline-year-mark">2020</div>
-        
-        <div class="timeline-event">
-          <div class="timeline-dot"></div>
-          <div class="timeline-connector"></div>
-          <div class="timeline-card">
-            <div class="timeline-card-title">Building Static Websites</div>
-            <div class="timeline-card-desc">Experimenting with HTML, CSS, JavaScript</div>
-            <div class="timeline-card-tags">
-              <span class="timeline-tag tag-project">PROJECT</span>
+      <!-- 13 LEFT · Completed CCBP [EDUCATION] -->
+      <div class="tl-item tl-left tl-education">
+        <div class="tl-card-area">
+          <div class="tl-card">
+            <div class="tl-card-header">
+              <div class="tl-card-title">Completed CCBP Full Stack Intensive</div>
+              <div class="tl-card-date">Nov 2022</div>
+            </div>
+            <div class="tl-card-desc">NxtWave · Full Stack Development</div>
+            <div class="tl-card-tags">
+              <span class="tl-tag tl-tag-education">EDUCATION</span>
             </div>
           </div>
         </div>
+        <div class="tl-dot-col"><div class="tl-dot"></div></div>
+        <div class="tl-empty-area"></div>
+      </div>
 
-        <div class="timeline-event">
-          <div class="timeline-dot"></div>
-          <div class="timeline-connector"></div>
-          <div class="timeline-card">
-            <div class="timeline-card-title">Learning Web Development Fundamentals</div>
-            <div class="timeline-card-desc">Self taught · HTML, CSS, JavaScript</div>
-            <div class="timeline-card-tags">
-              <span class="timeline-tag tag-education">EDUCATION</span>
+      <!-- ━━━ 2021 ━━━ -->
+      <div class="tl-year-row"><div class="tl-year-badge">2021</div></div>
+
+      <!-- 14 RIGHT · Started CCBP [EDUCATION] -->
+      <div class="tl-item tl-right tl-education">
+        <div class="tl-empty-area"></div>
+        <div class="tl-dot-col"><div class="tl-dot"></div></div>
+        <div class="tl-card-area">
+          <div class="tl-card">
+            <div class="tl-card-header">
+              <div class="tl-card-title">Started CCBP Full Stack Development</div>
+              <div class="tl-card-date">Sep 2021</div>
+            </div>
+            <div class="tl-card-desc">NxtWave Intensive Programme</div>
+            <div class="tl-card-tags">
+              <span class="tl-tag tl-tag-education">EDUCATION</span>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- 2019 -->
-      <div class="timeline-year-group">
-        <div class="timeline-year-mark">2019</div>
-        
-        <div class="timeline-event">
-          <div class="timeline-dot"></div>
-          <div class="timeline-connector"></div>
-          <div class="timeline-card">
-            <div class="timeline-card-title">Started Development Journey</div>
-            <div class="timeline-card-desc">First steps into web development and coding</div>
-            <div class="timeline-card-tags">
-              <span class="timeline-tag tag-education">EDUCATION</span>
+      <!-- 15 LEFT · VMware [CERT] -->
+      <div class="tl-item tl-left tl-cert">
+        <div class="tl-card-area">
+          <div class="tl-card">
+            <div class="tl-card-header">
+              <div class="tl-card-title">VMware Network Virtualization Concepts</div>
+              <div class="tl-card-date">2021</div>
+            </div>
+            <div class="tl-card-desc">VMware IT Academy</div>
+            <div class="tl-card-tags">
+              <span class="tl-tag tl-tag-cert">CERT</span>
+            </div>
+          </div>
+        </div>
+        <div class="tl-dot-col"><div class="tl-dot"></div></div>
+        <div class="tl-empty-area"></div>
+      </div>
+
+      <!-- ━━━ 2020 ━━━ -->
+      <div class="tl-year-row"><div class="tl-year-badge">2020</div></div>
+
+      <!-- 16 RIGHT · Building Static Websites [PROJECT] -->
+      <div class="tl-item tl-right tl-project">
+        <div class="tl-empty-area"></div>
+        <div class="tl-dot-col"><div class="tl-dot"></div></div>
+        <div class="tl-card-area">
+          <div class="tl-card">
+            <div class="tl-card-header">
+              <div class="tl-card-title">Building Static Websites</div>
+              <div class="tl-card-date">2020</div>
+            </div>
+            <div class="tl-card-desc">Experimenting with HTML, CSS, JavaScript</div>
+            <div class="tl-card-tags">
+              <span class="tl-tag tl-tag-project">PROJECT</span>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
+
+      <!-- 17 LEFT · Learning Web Dev [EDUCATION] -->
+      <div class="tl-item tl-left tl-education">
+        <div class="tl-card-area">
+          <div class="tl-card">
+            <div class="tl-card-header">
+              <div class="tl-card-title">Learning Web Development Fundamentals</div>
+              <div class="tl-card-date">2020</div>
+            </div>
+            <div class="tl-card-desc">Self taught · HTML, CSS, JavaScript</div>
+            <div class="tl-card-tags">
+              <span class="tl-tag tl-tag-education">EDUCATION</span>
+            </div>
+          </div>
+        </div>
+        <div class="tl-dot-col"><div class="tl-dot"></div></div>
+        <div class="tl-empty-area"></div>
+      </div>
+
+      <!-- ━━━ 2019 ━━━ -->
+      <div class="tl-year-row"><div class="tl-year-badge">2019</div></div>
+
+      <!-- 18 RIGHT · Started Development Journey [EDUCATION] -->
+      <div class="tl-item tl-right tl-education">
+        <div class="tl-empty-area"></div>
+        <div class="tl-dot-col"><div class="tl-dot"></div></div>
+        <div class="tl-card-area">
+          <div class="tl-card">
+            <div class="tl-card-header">
+              <div class="tl-card-title">Started Development Journey</div>
+              <div class="tl-card-date">2019</div>
+            </div>
+            <div class="tl-card-desc">First steps into web development and coding</div>
+            <div class="tl-card-tags">
+              <span class="tl-tag tl-tag-education">EDUCATION</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /tl-wrap -->
+  </div><!-- /section-wrap -->
 </section>
 
 <footer>
@@ -315,5 +721,11 @@
 
 <script src="../js/particles.js"></script>
 <script src="../js/chat.js"></script>
+<script>
+  /* Stagger animation delays on all timeline items */
+  document.querySelectorAll('.tl-item').forEach(function(el, i) {
+    el.style.animationDelay = (0.04 + i * 0.07) + 's';
+  });
+</script>
 </body>
 </html>
