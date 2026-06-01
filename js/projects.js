@@ -1,3 +1,5 @@
+let allProjects = [];
+
 function renderHero() {
   const h = CONTENT.hero;
   document.getElementById('heroAvailability').textContent = h.availability;
@@ -72,24 +74,37 @@ function renderCerts() {
     </div>`).join('');
 }
 
-function renderProjects() {
-  document.getElementById('projectsGrid').innerHTML = CONTENT.projects.map((p, i) => `
-    <div class="project-card" onclick="openModal(${i})">
-      <div class="project-arrow">↗</div>
-      <div class="project-thumb">
-        <div class="project-thumb-pattern"></div>
-        <div class="project-thumb-icon">
-  ${p.icon && (p.icon.startsWith('../') || p.icon.startsWith('http') || p.icon.startsWith('/')) 
-    ? `<img src="${p.icon}" alt="${p.title}" style="width:100%;height:100%;object-fit:cover;">` 
-    : p.icon}
-</div>
-      </div>
-      <div class="project-body">
-        <div class="project-tags">${p.tags.map(t => `<span class="project-tag">${t}</span>`).join('')}</div>
-        <div class="project-title">${p.title}</div>
-        <div class="project-desc">${p.desc}</div>
-      </div>
-    </div>`).join('');
+function projectThumb(p) {
+  if (p.image) {
+    return `<img src="${p.image}" alt="${p.title}" style="width:100%;height:100%;object-fit:cover;">`;
+  }
+  return p.title.slice(0, 3).toUpperCase();
+}
+
+async function renderProjects() {
+  const grid = document.getElementById('projectsGrid');
+  if (!grid) return;
+  try {
+    const response = await fetch('data/projects.json');
+    const text = await response.text();
+    const cleaned = text.split('\n').filter(l => !l.trim().startsWith('//')).join('\n');
+    allProjects = JSON.parse(cleaned);
+    grid.innerHTML = allProjects.map((p, i) => `
+      <div class="project-card" onclick="openModal(${i})">
+        <div class="project-arrow">↗</div>
+        <div class="project-thumb">
+          <div class="project-thumb-pattern"></div>
+          <div class="project-thumb-icon">${projectThumb(p)}</div>
+        </div>
+        <div class="project-body">
+          <div class="project-tags">${p.tags.map(t => `<span class="project-tag">${t}</span>`).join('')}</div>
+          <div class="project-title">${p.title}</div>
+          <div class="project-desc">${p.desc}</div>
+        </div>
+      </div>`).join('');
+  } catch (e) {
+    console.error('Failed to load projects:', e);
+  }
 }
 
 function renderContact() {
@@ -102,13 +117,12 @@ function renderContact() {
 }
 
 function openModal(i) {
-  const p = CONTENT.projects[i];
+  const p = allProjects[i];
   const modalIcon = document.getElementById('modalIcon');
-  if (p.icon && (p.icon.startsWith('../') || p.icon.startsWith('http') || p.icon.startsWith('/'))) {
-  modalIcon.innerHTML = `<img src="${p.icon}" alt="${p.title}" style="width:100%;height:100%;object-fit:cover;">`;
-  } 
-  else {
-  modalIcon.textContent = p.icon;
+  if (p.image) {
+    modalIcon.innerHTML = `<img src="${p.image}" alt="${p.title}" style="width:100%;height:100%;object-fit:cover;">`;
+  } else {
+    modalIcon.textContent = p.title.slice(0, 3).toUpperCase();
   }
   document.getElementById('modalTitle').textContent = p.title;
   document.getElementById('modalDesc').innerHTML = p.fullDesc
