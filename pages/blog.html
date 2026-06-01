@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog · KC://dev</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<canvas id="particleCanvas" style="position:fixed;inset:0;z-index:0;pointer-events:none;"></canvas>
+<div class="cursor" id="cursor"></div>
+
+<nav>
+  <a class="nav-logo" href="../index.html">KC://dev</a>
+  <button class="nav-hamburger" id="navHamburger" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="about.html" onclick="closeMenu()">about</a></li>
+    <li><a href="experience.html" onclick="closeMenu()">experience</a></li>
+    <li><a href="timeline.html" onclick="closeMenu()">timeline</a></li>
+    <li><a href="blog.html" onclick="closeMenu()">blog</a></li>
+  </ul>
+</nav>
+
+<div class="mobile-menu-overlay" id="mobileMenuOverlay">
+  <div class="mobile-menu">
+    <a href="about.html" onclick="closeMenu()">about</a>
+    <a href="experience.html" onclick="closeMenu()">experience</a>
+    <a href="timeline.html" onclick="closeMenu()">timeline</a>
+    <a href="blog.html" onclick="closeMenu()">blog</a>
+  </div>
+</div>
+
+<a class="back-link" href="../index.html">← Back to home</a>
+
+<section id="blog">
+  <div class="section-wrap">
+    <div class="section-label">// 01 — blog</div>
+    <h2>Blog & Content</h2>
+    <p class="blog-subtext">Coming soon — I write about AI, software development and my learning journey.</p>
+    <div class="blog-grid">
+      <div class="blog-card">
+        <div class="blog-card-title">First post coming soon...</div>
+        <div class="blog-card-text">A short update on the first AI project post is on the way. Stay tuned.</div>
+      </div>
+      <div class="blog-card">
+        <div class="blog-card-title">First post coming soon...</div>
+        <div class="blog-card-text">This space will share technical notes, lessons learned, and prompt engineering ideas.</div>
+      </div>
+      <div class="blog-card">
+        <div class="blog-card-title">First post coming soon...</div>
+        <div class="blog-card-text">I’m preparing content around AI, games, and the learning path from MSc to freelance projects.</div>
+      </div>
+    </div>
+    <p class="blog-note">Check back soon or follow me on LinkedIn for the latest updates.</p>
+  </div>
+</section>
+
+<footer>
+  <span>KC://dev</span>
+  <span>Krishna Chitrala · 2025</span>
+  <span>Rugby, UK</span>
+</footer>
+
+<script src="../js/particles.js"></script>
+<script src="../js/chat.js"></script>
+</body>
+</html>

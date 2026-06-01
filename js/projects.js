@@ -12,6 +12,8 @@ function renderHero() {
 }
 
 function renderAbout() {
+  const leftEl = document.getElementById('aboutLeft');
+  if (!leftEl) return;
   const a = CONTENT.about;
   const statsHTML = a.stats.map(s => `
     <div class="about-stat">
@@ -24,15 +26,18 @@ function renderAbout() {
       <div class="about-edu-sub">${e.degree}</div>
       <div class="about-edu-detail">${e.detail}</div>
     </div>`).join('');
-  const leftEl = document.getElementById('aboutLeft');
   leftEl.className = 'about-stats';
   leftEl.innerHTML = statsHTML + eduHTML;
-  document.getElementById('aboutText').innerHTML =
-    a.paragraphs.map(p => `<p>${p}</p>`).join('');
+  const aboutText = document.getElementById('aboutText');
+  if (aboutText) {
+    aboutText.innerHTML = a.paragraphs.map(p => `<p>${p}</p>`).join('');
+  }
 }
 
 function renderSkills() {
-  document.getElementById('skillsContainer').innerHTML = CONTENT.skills.map(cat => `
+  const container = document.getElementById('skillsContainer');
+  if (!container) return;
+  container.innerHTML = CONTENT.skills.map(cat => `
     <div>
       <div class="skill-category-label">${cat.category}</div>
       <div class="skills-grid">${cat.items.map(s => `<div class="skill-tag">${s}</div>`).join('')}</div>
@@ -40,7 +45,9 @@ function renderSkills() {
 }
 
 function renderExperience() {
-  document.getElementById('expList').innerHTML = CONTENT.experience.map(e => `
+  const container = document.getElementById('expList');
+  if (!container) return;
+  container.innerHTML = CONTENT.experience.map(e => `
     <div class="exp-item">
       <div class="exp-meta">
         <div class="exp-date">${e.date}</div>
@@ -55,7 +62,9 @@ function renderExperience() {
 }
 
 function renderCerts() {
-  document.getElementById('certsGrid').innerHTML = CONTENT.certs.map(c => `
+  const container = document.getElementById('certsGrid');
+  if (!container) return;
+  container.innerHTML = CONTENT.certs.map(c => `
     <div class="cert-card">
       <div class="cert-issuer">${c.issuer}</div>
       <div class="cert-name">${c.name}</div>

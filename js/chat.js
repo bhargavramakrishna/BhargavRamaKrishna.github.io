@@ -30,6 +30,8 @@ let lastSendTime = 0;
 
 // Initialize question count
 function initializeQuestionCount() {
+  const chatInput = document.getElementById('chatInput');
+  if (!chatInput) return;
   const count = localStorage.getItem('chatQuestionsUsed');
   if (count === null) {
     localStorage.setItem('chatQuestionsUsed', '0');

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About · KC://dev</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<canvas id="particleCanvas" style="position:fixed;inset:0;z-index:0;pointer-events:none;"></canvas>
+<div class="cursor" id="cursor"></div>
+
+<nav>
+  <a class="nav-logo" href="../index.html">KC://dev</a>
+  <button class="nav-hamburger" id="navHamburger" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="about.html" onclick="closeMenu()">about</a></li>
+    <li><a href="experience.html" onclick="closeMenu()">experience</a></li>
+    <li><a href="timeline.html" onclick="closeMenu()">timeline</a></li>
+    <li><a href="blog.html" onclick="closeMenu()">blog</a></li>
+  </ul>
+</nav>
+
+<div class="mobile-menu-overlay" id="mobileMenuOverlay">
+  <div class="mobile-menu">
+    <a href="about.html" onclick="closeMenu()">about</a>
+    <a href="experience.html" onclick="closeMenu()">experience</a>
+    <a href="timeline.html" onclick="closeMenu()">timeline</a>
+    <a href="blog.html" onclick="closeMenu()">blog</a>
+  </div>
+</div>
+
+<a class="back-link" href="../index.html">← Back to home</a>
+
+<section id="about">
+  <div class="section-wrap">
+    <div class="section-label">// 01 — about</div>
+    <h2>Who I Am</h2>
+    <div class="about-grid">
+      <div class="about-stats">
+        <div class="about-stat">
+          <div class="about-stat-num">MSc</div>
+          <div class="about-stat-label">distinction · kingston university</div>
+        </div>
+        <div class="about-stat">
+          <div class="about-stat-num">2+</div>
+          <div class="about-stat-label">years building & shipping</div>
+        </div>
+        <div class="about-stat">
+          <div class="about-stat-num">10+</div>
+          <div class="about-stat-label">ai & software projects</div>
+        </div>
+        <div class="about-stat">
+          <div class="about-stat-num">2</div>
+          <div class="about-stat-label">certifications earned</div>
+        </div>
+
+        <div class="about-edu">
+          <div class="about-edu-title">Kingston University London</div>
+          <div class="about-edu-sub">MSc Computer Games & AI Programming</div>
+          <div class="about-edu-detail">Sep 2023 – Sep 2024 · Grade: Distinction</div>
+        </div>
+        <div class="about-edu">
+          <div class="about-edu-title">SRK Institute of Technology</div>
+          <div class="about-edu-sub">Computer Science Engineering</div>
+          <div class="about-edu-detail">Sep 2018 – Sep 2022 · Grade: First class</div>
+        </div>
+      </div>
+      <div class="about-text">
+        <p>I got into AI because I'm obsessed with one thing — taking hard, messy problems and building intelligent systems that actually solve them. Not theoretically. In production. End to end.</p>
+        <p>My day-to-day is building LLM-powered apps and AI products from scratch — from the first prompt to a working, deployable system. I work fast using tools like Claude, Cursor, and GitHub Copilot, but I never skip the fundamentals. Clean architecture, proper debugging, code I can defend.</p>
+        <p>I'm self-taught at heart. I don't wait for permission or the perfect course — I pick up what I need, build something real with it, and figure out the hard parts along the way. My MSc at Kingston gave me the theoretical foundation, but shipping projects is what actually taught me how to think.</p>
+        <p>Right now I'm looking for AI engineering roles where I can get my hands dirty — building LLM products, RAG pipelines, and intelligent agents that make a real difference.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="section-wrap">
+    <div class="section-label">// 02 — skills</div>
+    <h2>Tech Stack</h2>
+    <div class="skills-categories">
+      <div>
+        <div class="skill-category-label">// AI & Machine Learning</div>
+        <div class="skills-grid">
+          <div class="skill-tag">Python</div>
+          <div class="skill-tag">PyTorch</div>
+          <div class="skill-tag">LangChain</div>
+          <div class="skill-tag">Hugging Face</div>
+          <div class="skill-tag">RAG Pipelines</div>
+          <div class="skill-tag">Deep Q-Learning</div>
+          <div class="skill-tag">DCGAN</div>
+          <div class="skill-tag">Genetic Algorithms</div>
+          <div class="skill-tag">Reinforcement Learning</div>
+        </div>
+      </div>
+      <div>
+        <div class="skill-category-label">// Backend & APIs</div>
+        <div class="skills-grid">
+          <div class="skill-tag">FastAPI</div>
+          <div class="skill-tag">SQL</div>
+          <div class="skill-tag">Vector Databases</div>
+          <div class="skill-tag">Git</div>
+          <div class="skill-tag">GitHub Copilot</div>
+        </div>
+      </div>
+      <div>
+        <div class="skill-category-label">// Game Development</div>
+        <div class="skills-grid">
+          <div class="skill-tag">Unity</div>
+          <div class="skill-tag">Unreal Engine</div>
+          <div class="skill-tag">C++</div>
+          <div class="skill-tag">C#</div>
+          <div class="skill-tag">Procedural Generation</div>
+          <div class="skill-tag">Game AI</div>
+        </div>
+      </div>
+      <div>
+        <div class="skill-category-label">// Web & Tools</div>
+        <div class="skills-grid">
+          <div class="skill-tag">HTML / CSS</div>
+          <div class="skill-tag">JavaScript</div>
+          <div class="skill-tag">Full Stack Dev</div>
+          <div class="skill-tag">Claude</div>
+          <div class="skill-tag">Cursor</div>
+          <div class="skill-tag">v0</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>KC://dev</span>
+  <span>Krishna Chitrala · 2025</span>
+  <span>Rugby, UK</span>
+</footer>
+
+<script src="../js/particles.js"></script>
+<script src="../js/chat.js"></script>
+</body>
+</html>

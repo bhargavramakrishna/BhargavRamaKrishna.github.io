@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Experience · KC://dev</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<canvas id="particleCanvas" style="position:fixed;inset:0;z-index:0;pointer-events:none;"></canvas>
+<div class="cursor" id="cursor"></div>
+
+<nav>
+  <a class="nav-logo" href="../index.html">KC://dev</a>
+  <button class="nav-hamburger" id="navHamburger" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="about.html" onclick="closeMenu()">about</a></li>
+    <li><a href="experience.html" onclick="closeMenu()">experience</a></li>
+    <li><a href="timeline.html" onclick="closeMenu()">timeline</a></li>
+    <li><a href="blog.html" onclick="closeMenu()">blog</a></li>
+  </ul>
+</nav>
+
+<div class="mobile-menu-overlay" id="mobileMenuOverlay">
+  <div class="mobile-menu">
+    <a href="about.html" onclick="closeMenu()">about</a>
+    <a href="experience.html" onclick="closeMenu()">experience</a>
+    <a href="timeline.html" onclick="closeMenu()">timeline</a>
+    <a href="blog.html" onclick="closeMenu()">blog</a>
+  </div>
+</div>
+
+<a class="back-link" href="../index.html">← Back to home</a>
+
+<section id="experience">
+  <div class="section-wrap">
+    <div class="section-label">// 01 — experience</div>
+    <h2>Work History</h2>
+    <div class="exp-list">
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-date">FEB 2025 — PRESENT</div>
+          <div class="exp-company">Independent</div>
+          <div class="exp-type">Freelance · Remote</div>
+        </div>
+        <div>
+          <div class="exp-role">Freelance AI & Software Developer</div>
+          <ul class="exp-desc">
+            <li>Built and shipped websites and web applications end-to-end using AI-assisted development tools with custom code</li>
+            <li>Developed LLM and RAG prototypes using LangChain, Hugging Face, and vector databases</li>
+            <li>Created backend APIs and automation scripts in Python and FastAPI</li>
+            <li>Experimented with Reinforcement Learning and agent-based AI systems</li>
+            <li>Delivered game development projects in Unity and Unreal Engine using C++ and C#</li>
+          </ul>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-date">APR 2024 — JUL 2025</div>
+          <div class="exp-company">Code Camp</div>
+          <div class="exp-type">Part-time · On-site</div>
+        </div>
+        <div>
+          <div class="exp-role">Head Teacher</div>
+          <ul class="exp-desc">
+            <li>Independently taught 24–30 students per class across multiple locations in coding and computational thinking</li>
+            <li>Increased student engagement and participation by ~35–40% through interactive coding exercises</li>
+            <li>Designed and delivered structured lesson plans ensuring consistent progress and measurable skill development</li>
+          </ul>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-date">SEP 2024 — JAN 2025</div>
+          <div class="exp-company">[P1] Games</div>
+          <div class="exp-type">Freelance · Remote</div>
+        </div>
+        <div>
+          <div class="exp-role">Game Programmer</div>
+          <ul class="exp-desc">
+            <li>Led development of 3 complete game projects, overseeing programming tasks and code quality</li>
+            <li>Implemented and optimised core gameplay systems in Unity and C#, improving performance by 25–30%</li>
+            <li>Collaborated with designers, artists, and QA teams to deliver engaging gameplay within tight deadlines</li>
+            <li>Mentored junior developers through code reviews, debugging support, and technical guidance</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="certs">
+  <div class="section-wrap">
+    <div class="section-label">// 02 — certifications</div>
+    <h2>Certifications</h2>
+    <div class="certs-grid">
+      <div class="cert-card">
+        <div class="cert-issuer">Forage · Quantium</div>
+        <div class="cert-name">Software Engineering Job Simulation</div>
+        <div class="cert-date">Dec 2025 · ID: GtrSggzuCghjM7cEG</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-issuer">Dubai Future Foundation</div>
+        <div class="cert-name">1 Million Prompters — Prompt Engineering</div>
+        <div class="cert-date">Sep 2025</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-issuer">VMware · IT Academy</div>
+        <div class="cert-name">Network Virtualization Concepts</div>
+        <div class="cert-date">2021</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-issuer">NxtWave · CCBP 4.0</div>
+        <div class="cert-name">Full Stack Development Intensive</div>
+        <div class="cert-date">Sep 2021 – Nov 2022</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>KC://dev</span>
+  <span>Krishna Chitrala · 2025</span>
+  <span>Rugby, UK</span>
+</footer>
+
+<script src="../js/particles.js"></script>
+<script src="../js/chat.js"></script>
+</body>
+</html>

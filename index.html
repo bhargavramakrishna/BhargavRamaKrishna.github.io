@@ -15,35 +15,27 @@
 
 <!-- NAV -->
 <nav>
-  <a class="nav-logo" href="#">KC://dev</a>
+  <a class="nav-logo" href="index.html">KC://dev</a>
   <button class="nav-hamburger" id="navHamburger" onclick="toggleMenu()">
     <span></span>
     <span></span>
     <span></span>
   </button>
   <ul class="nav-links">
-    <li><a href="#about" onclick="closeMenu()">about</a></li>
-    <li><a href="#skills" onclick="closeMenu()">skills</a></li>
-    <li><a href="#experience" onclick="closeMenu()">experience</a></li>
-    <li><a href="#certs" onclick="closeMenu()">certs</a></li>
-    <li><a href="#projects" onclick="closeMenu()">projects</a></li>
-    <li><a href="#chat" onclick="closeMenu()">ai</a></li>
-    <li><a href="#match" onclick="closeMenu()">match</a></li>
-    <li><a href="#contact" onclick="closeMenu()">contact</a></li>
+    <li><a href="pages/about.html" onclick="closeMenu()">about</a></li>
+    <li><a href="pages/experience.html" onclick="closeMenu()">experience</a></li>
+    <li><a href="pages/timeline.html" onclick="closeMenu()">timeline</a></li>
+    <li><a href="pages/blog.html" onclick="closeMenu()">blog</a></li>
   </ul>
 </nav>
 
 <!-- MOBILE MENU OVERLAY -->
 <div class="mobile-menu-overlay" id="mobileMenuOverlay">
   <div class="mobile-menu">
-    <a href="#about" onclick="closeMenu()">about</a>
-    <a href="#skills" onclick="closeMenu()">skills</a>
-    <a href="#experience" onclick="closeMenu()">experience</a>
-    <a href="#certs" onclick="closeMenu()">certs</a>
-    <a href="#projects" onclick="closeMenu()">projects</a>
-    <a href="#chat" onclick="closeMenu()">ai</a>
-    <a href="#match" onclick="closeMenu()">match</a>
-    <a href="#contact" onclick="closeMenu()">contact</a>
+    <a href="pages/about.html" onclick="closeMenu()">about</a>
+    <a href="pages/experience.html" onclick="closeMenu()">experience</a>
+    <a href="pages/timeline.html" onclick="closeMenu()">timeline</a>
+    <a href="pages/blog.html" onclick="closeMenu()">blog</a>
   </div>
 </div>
 
@@ -60,45 +52,6 @@
     <p class="hero-role" id="heroRole"></p>
     <p class="hero-location" id="heroLocation"></p>
     <div class="hero-btns" id="heroBtns"></div>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section id="about">
-  <div class="section-wrap">
-    <div class="section-label"></div>
-    <h2>Who I Am</h2>
-    <div class="about-grid">
-      <div id="aboutLeft"></div>
-      <div class="about-text" id="aboutText"></div>
-    </div>
-  </div>
-</section>
-
-<!-- SKILLS -->
-<section id="skills">
-  <div class="section-wrap">
-    <div class="section-label">// 02 — skills</div>
-    <h2>Tech Stack</h2>
-    <div class="skills-categories" id="skillsContainer"></div>
-  </div>
-</section>
-
-<!-- EXPERIENCE -->
-<section id="experience">
-  <div class="section-wrap">
-    <div class="section-label">// 03 — experience</div>
-    <h2>Work History</h2>
-    <div class="exp-list" id="expList"></div>
-  </div>
-</section>
-
-<!-- CERTIFICATIONS -->
-<section id="certs">
-  <div class="section-wrap">
-    <div class="section-label">// 04 — certifications</div>
-    <h2>Certifications</h2>
-    <div class="certs-grid" id="certsGrid"></div>
   </div>
 </section>
 
