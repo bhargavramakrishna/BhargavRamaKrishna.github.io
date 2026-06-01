@@ -137,6 +137,66 @@ const CONTENT = {
       period: 'Feb 2024 – Apr 2024'
     },
     {
+      icon: 'GA',
+      title: 'GA Enemies — Adaptive Game AI',
+      tags: ['Unity', 'C#', 'Genetic Algorithms', 'Game AI', 'Adaptive Difficulty'],
+      desc: 'Enemy AI that evolves using a Genetic Algorithm based on player performance, creating dynamic difficulty scaling.',
+      fullDesc: "Developed a game AI system using a Genetic Algorithm where enemy strength dynamically evolves based on player performance. As the player defeats enemies, the algorithm adapts future enemies by increasing their attributes — strength, speed, and difficulty — creating a progressively challenging gameplay experience.\n\nAlso implemented a loot-based stat system where players receive bonus attributes from enemy drops, allowing for adaptive player progression alongside evolving enemies. This project demonstrates the application of evolutionary algorithms in game design, balancing difficulty, and enhancing replayability through dynamic scaling.",
+      github: null,
+      live: null,
+      period: 'Feb 2024 – Apr 2024'
+    },
+    {
+      icon: 'GA',
+      title: 'GA Enemies — Adaptive Game AI',
+      tags: ['Unity', 'C#', 'Genetic Algorithms', 'Game AI', 'Adaptive Difficulty'],
+      desc: 'Enemy AI that evolves using a Genetic Algorithm based on player performance, creating dynamic difficulty scaling.',
+      fullDesc: "Developed a game AI system using a Genetic Algorithm where enemy strength dynamically evolves based on player performance. As the player defeats enemies, the algorithm adapts future enemies by increasing their attributes — strength, speed, and difficulty — creating a progressively challenging gameplay experience.\n\nAlso implemented a loot-based stat system where players receive bonus attributes from enemy drops, allowing for adaptive player progression alongside evolving enemies. This project demonstrates the application of evolutionary algorithms in game design, balancing difficulty, and enhancing replayability through dynamic scaling.",
+      github: null,
+      live: null,
+      period: 'Feb 2024 – Apr 2024'
+    },
+    {
+      icon: 'GA',
+      title: 'GA Enemies — Adaptive Game AI',
+      tags: ['Unity', 'C#', 'Genetic Algorithms', 'Game AI', 'Adaptive Difficulty'],
+      desc: 'Enemy AI that evolves using a Genetic Algorithm based on player performance, creating dynamic difficulty scaling.',
+      fullDesc: "Developed a game AI system using a Genetic Algorithm where enemy strength dynamically evolves based on player performance. As the player defeats enemies, the algorithm adapts future enemies by increasing their attributes — strength, speed, and difficulty — creating a progressively challenging gameplay experience.\n\nAlso implemented a loot-based stat system where players receive bonus attributes from enemy drops, allowing for adaptive player progression alongside evolving enemies. This project demonstrates the application of evolutionary algorithms in game design, balancing difficulty, and enhancing replayability through dynamic scaling.",
+      github: null,
+      live: null,
+      period: 'Feb 2024 – Apr 2024'
+    },
+    {
+      icon: 'GA',
+      title: 'GA Enemies — Adaptive Game AI',
+      tags: ['Unity', 'C#', 'Genetic Algorithms', 'Game AI', 'Adaptive Difficulty'],
+      desc: 'Enemy AI that evolves using a Genetic Algorithm based on player performance, creating dynamic difficulty scaling.',
+      fullDesc: "Developed a game AI system using a Genetic Algorithm where enemy strength dynamically evolves based on player performance. As the player defeats enemies, the algorithm adapts future enemies by increasing their attributes — strength, speed, and difficulty — creating a progressively challenging gameplay experience.\n\nAlso implemented a loot-based stat system where players receive bonus attributes from enemy drops, allowing for adaptive player progression alongside evolving enemies. This project demonstrates the application of evolutionary algorithms in game design, balancing difficulty, and enhancing replayability through dynamic scaling.",
+      github: null,
+      live: null,
+      period: 'Feb 2024 – Apr 2024'
+    },
+    {
+      icon: 'GA',
+      title: 'GA Enemies — Adaptive Game AI',
+      tags: ['Unity', 'C#', 'Genetic Algorithms', 'Game AI', 'Adaptive Difficulty'],
+      desc: 'Enemy AI that evolves using a Genetic Algorithm based on player performance, creating dynamic difficulty scaling.',
+      fullDesc: "Developed a game AI system using a Genetic Algorithm where enemy strength dynamically evolves based on player performance. As the player defeats enemies, the algorithm adapts future enemies by increasing their attributes — strength, speed, and difficulty — creating a progressively challenging gameplay experience.\n\nAlso implemented a loot-based stat system where players receive bonus attributes from enemy drops, allowing for adaptive player progression alongside evolving enemies. This project demonstrates the application of evolutionary algorithms in game design, balancing difficulty, and enhancing replayability through dynamic scaling.",
+      github: null,
+      live: null,
+      period: 'Feb 2024 – Apr 2024'
+    },
+    {
+      icon: 'GA',
+      title: 'GA Enemies — Adaptive Game AI',
+      tags: ['Unity', 'C#', 'Genetic Algorithms', 'Game AI', 'Adaptive Difficulty'],
+      desc: 'Enemy AI that evolves using a Genetic Algorithm based on player performance, creating dynamic difficulty scaling.',
+      fullDesc: "Developed a game AI system using a Genetic Algorithm where enemy strength dynamically evolves based on player performance. As the player defeats enemies, the algorithm adapts future enemies by increasing their attributes — strength, speed, and difficulty — creating a progressively challenging gameplay experience.\n\nAlso implemented a loot-based stat system where players receive bonus attributes from enemy drops, allowing for adaptive player progression alongside evolving enemies. This project demonstrates the application of evolutionary algorithms in game design, balancing difficulty, and enhancing replayability through dynamic scaling.",
+      github: null,
+      live: null,
+      period: 'Feb 2024 – Apr 2024'
+    },
+    {
       icon: 'LLM',
       title: 'LLM & RAG Prototypes',
       tags: ['Python', 'LangChain', 'Hugging Face', 'FastAPI', 'Vector Databases'],
