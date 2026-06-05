@@ -152,6 +152,14 @@ function openModal(i) {
     modalHero.innerHTML = `<div class="modal-hero-placeholder">${initials}</div>`;
   }
 
+  function renderParagraphs(text) {
+    if (!text) return '';
+    return text
+      .split(/\n\s*\n/)
+      .map(para => `<p class="modal-paragraph">${para.trim()}</p>`)
+      .join('');
+  }
+
   document.getElementById('modalTitle').textContent = p.title;
   document.getElementById('modalCategory').textContent = p.category || '';
   document.getElementById('modalPeriod').textContent = p.period || '';
@@ -164,10 +172,18 @@ function openModal(i) {
       p.live ? `<a href="${p.live}" target="_blank" class="btn btn-sm btn-ghost">◈ Live Demo</a>` : ''
     ].filter(Boolean).join('');
 
-  document.getElementById('modalHighlights').innerHTML =
-    (p.highlights && p.highlights.length)
-      ? p.highlights.map(item => `<li>${item}</li>`).join('')
-      : `<li>No highlights available.</li>`;
+  document.getElementById('modalAbout').innerHTML = renderParagraphs(p.about || '');
+  document.getElementById('modalTakeaways').innerHTML = renderParagraphs(p.takeaways || '');
+
+  const thanksWrapper = document.getElementById('modalThanksWrapper');
+  const modalThanks = document.getElementById('modalThanks');
+  if (p.thanks && p.thanks.trim()) {
+    modalThanks.innerHTML = renderParagraphs(p.thanks);
+    thanksWrapper.style.display = 'block';
+  } else {
+    modalThanks.innerHTML = '';
+    thanksWrapper.style.display = 'none';
+  }
 
   document.getElementById('modalTech').innerHTML =
     (p.tags || []).map(t => `<span>${t}</span>`).join('');
