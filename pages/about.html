@@ -146,6 +146,36 @@
   <span>Rugby, UK</span>
 </footer>
 
+<div class="floating-chat-wrapper">
+  <button id="floatingChatButton" class="floating-chat-button" title="Ask AI about Krishna" aria-expanded="false">[KC]</button>
+  <div id="floatingChatPanel" class="floating-chat-panel" aria-hidden="true">
+    <div class="floating-chat-header">
+      <div>
+        <div class="floating-chat-title">[KC] ASSISTANT · ONLINE</div>
+        <div class="floating-chat-counter" id="questionCounter">20 remaining</div>
+      </div>
+      <button id="floatingChatClose" class="floating-chat-close" aria-label="Close chat">✕</button>
+    </div>
+    <div class="chat-messages" id="chatMessages">
+      <div class="chat-msg ai">
+        <div class="chat-avatar">AI</div>
+        <div class="chat-bubble">Hey! I'm an AI trained on everything about Krishna Chitrala. Ask me about his education, skills, projects, experience, or anything else — I'll answer instantly.</div>
+      </div>
+    </div>
+    <div class="chat-suggestions" id="floatingChatSuggestions">
+      <button class="chat-suggest" type="button" onclick="sendSuggestion(this)">What's his education?</button>
+      <button class="chat-suggest" type="button" onclick="sendSuggestion(this)">What projects has he built?</button>
+      <button class="chat-suggest" type="button" onclick="sendSuggestion(this)">Does he know AI / ML?</button>
+      <button class="chat-suggest" type="button" onclick="sendSuggestion(this)">Is he available to hire?</button>
+    </div>
+    <div class="chat-input-row">
+      <input class="chat-input" id="chatInput" type="text" placeholder="Ask anything about Krishna..." autocomplete="off" />
+      <button id="sendButton" class="chat-send" type="button">SEND →</button>
+    </div>
+  </div>
+</div>
+
 <script src="../js/chat.js"></script>
+<script src="../js/floating-chat.js"></script>
 </body>
 </html>

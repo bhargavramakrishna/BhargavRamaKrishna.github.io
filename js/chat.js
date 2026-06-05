@@ -49,10 +49,10 @@ function updateQuestionDisplay() {
   
   if (counter) {
     if (remaining > 0) {
-      counter.textContent = `${remaining} questions remaining`;
+      counter.textContent = `${remaining} remaining`;
       counter.style.color = '#666';
     } else {
-      counter.textContent = '0 questions remaining';
+      counter.textContent = '0 remaining';
       counter.style.color = '#e74c3c';
     }
   }
@@ -193,7 +193,7 @@ async function callMatchAPI(jobDescription) {
 function setMatchStatus(message, isError = false, includeRetry = false) {
   const status = document.getElementById('matchStatus');
   if (!status) return;
-  status.style.color = isError ? '#ffbaba' : '#8be9fd';
+  status.style.color = isError ? '#dc2626' : '#0369a1';
   if (includeRetry) {
     status.innerHTML = `${message} <button class="match-retry" type="button">Retry</button>`;
     const retry = status.querySelector('.match-retry');
@@ -260,7 +260,7 @@ function setMatchLoading(isLoading) {
   if (status) {
     if (isLoading) {
       status.textContent = 'Analyzing job description...';
-      status.style.color = '#00e8ff';
+      status.style.color = '#0369a1';
     } else {
       status.textContent = '';
     }
@@ -311,6 +311,11 @@ async function handleChat() {
   
   if (isSending) return;
   
+  const suggestions = document.getElementById('floatingChatSuggestions');
+  if (suggestions) {
+    suggestions.style.display = 'none';
+  }
+
   const input = document.getElementById('chatInput');
   const val = input.value.trim();
   
@@ -369,6 +374,12 @@ async function handleChat() {
 function sendSuggestion(btn) {
   const input = document.getElementById('chatInput');
   input.value = btn.textContent;
+
+  const suggestions = document.getElementById('floatingChatSuggestions');
+  if (suggestions) {
+    suggestions.style.display = 'none';
+  }
+
   handleChat();
 }
 
