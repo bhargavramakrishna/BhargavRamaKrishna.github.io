@@ -144,16 +144,30 @@
 <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
   <div class="modal" id="modalBox">
     <button class="modal-close" onclick="closeModal()">✕ CLOSE</button>
-    <div class="modal-thumb">
-      <div class="modal-thumb-pattern"></div>
-      <div class="modal-thumb-icon" id="modalIcon"></div>
-    </div>
-    <div class="modal-body">
-      <div class="modal-tags" id="modalTags"></div>
-      <div class="modal-title" id="modalTitle"></div>
-      <div class="modal-desc" id="modalDesc"></div>
-      <div class="modal-section">Links</div>
-      <div class="modal-links" id="modalLinks"></div>
+    <div class="modal-hero" id="modalHero"></div>
+    <div class="modal-content" id="modalContent">
+      <div class="modal-header">
+        <div>
+          <div class="modal-title" id="modalTitle"></div>
+          <div class="modal-category" id="modalCategory"></div>
+        </div>
+        <div class="modal-period" id="modalPeriod"></div>
+      </div>
+      <div class="modal-row">
+        <div class="modal-tag-row" id="modalTags"></div>
+        <div class="modal-action-links" id="modalActionLinks"></div>
+      </div>
+      <div class="modal-divider"></div>
+      <div class="modal-section-label">// AIM</div>
+      <div class="modal-aim" id="modalAim"></div>
+      <div class="modal-divider"></div>
+      <div class="modal-section-label">// WHAT I BUILT</div>
+      <ul class="modal-highlights" id="modalHighlights"></ul>
+      <div class="modal-divider"></div>
+      <div class="modal-section-label">// TECH STACK</div>
+      <div class="modal-tech" id="modalTech"></div>
+      <div class="modal-divider"></div>
+      <div class="modal-footer" id="modalFooter"></div>
     </div>
   </div>
 </div>

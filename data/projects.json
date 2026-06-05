@@ -11,6 +11,16 @@
     "fullDesc": "Developed an AI-driven dungeon generation system using deep learning and procedural algorithms to automatically create coherent dungeon layouts within Unreal Engine. The system utilised a DCGAN to generate dungeon and room layouts from training data. The dataset was preprocessed and augmented through rotation techniques to improve model generalisation.\n\nCustom corrective systems enforced room boundaries, cleaned invalid tile data, identified and connected dungeon regions, automatically placed doors, and used A* pathfinding to connect isolated areas efficiently. The final system allowed users to visualise procedurally generated dungeons that combined AI-driven generation with rule-based validation.",
     "tags": ["Unreal Engine", "Python", "DCGAN", "Deep Learning", "A* Pathfinding", "Procedural Gen"],
     "image": "assets/images/gp.png",
+    "images": [],
+    "aim": "Design an intelligent system that generates unique playable dungeon layouts combining deep learning with rule-based correction.",
+    "highlights": [
+      "Trained a DCGAN to generate dungeon and room layouts from augmented dataset",
+      "Built A* pathfinding to connect isolated dungeon regions into one coherent layout",
+      "Corrective system enforces room boundaries, cleans invalid tiles and places doors",
+      "Bookshelf placement algorithm positions objects within defined room regions",
+      "Integrated entire pipeline into Unreal Engine with visualisation interface"
+    ],
+    "category": "AI / Game Dev",
     "github": null,
     "live": null,
     "period": "Jun 2024 – Aug 2024"
@@ -21,6 +31,15 @@
     "fullDesc": "Developed a game AI system using a Genetic Algorithm where enemy strength dynamically evolves based on player performance. As the player defeats enemies, the algorithm adapts future enemies by increasing their attributes — strength, speed, and difficulty — creating a progressively challenging gameplay experience.\n\nAlso implemented a loot-based stat system where players receive bonus attributes from enemy drops, allowing for adaptive player progression alongside evolving enemies. This project demonstrates the application of evolutionary algorithms in game design, balancing difficulty, and enhancing replayability through dynamic scaling.",
     "tags": ["Unity", "C#", "Genetic Algorithms", "Game AI", "Adaptive Difficulty"],
     "image": null,
+    "images": [],
+    "aim": "Create an adaptive enemy system that evolves difficulty based on player performance using evolutionary algorithms.",
+    "highlights": [
+      "Genetic Algorithm evolves enemy stats based on how well the player performs",
+      "Dynamic difficulty scaling without any manual tuning or hardcoded values",
+      "Loot system gives players bonus attributes from enemy drops for progression",
+      "Enemies become progressively harder creating natural replayability"
+    ],
+    "category": "Game Dev / AI",
     "github": null,
     "live": null,
     "period": "Feb 2024 – Apr 2024"
@@ -31,6 +50,15 @@
     "fullDesc": "As part of independent freelance AI engineering work, developed multiple LLM and RAG prototypes using LangChain, Hugging Face transformers, and vector databases. Built backend APIs in FastAPI to expose these AI systems, along with automation scripts in Python.\n\nAlso experimented with Reinforcement Learning and agent-based AI systems, exploring how intelligent agents can be designed to operate in dynamic environments.",
     "tags": ["Python", "LangChain", "Hugging Face", "FastAPI", "Vector Databases"],
     "image": null,
+    "images": [],
+    "aim": "Build and ship production-ready LLM powered applications and RAG pipelines as a freelance AI developer.",
+    "highlights": [
+      "Multiple LLM apps built using LangChain and Hugging Face transformers",
+      "RAG pipelines with vector database integration for intelligent document querying",
+      "FastAPI backends to serve AI models as production REST APIs",
+      "Experimented with Reinforcement Learning and agent-based AI systems"
+    ],
+    "category": "AI / Backend",
     "github": null,
     "live": null,
     "period": "Feb 2025 – Present"
@@ -41,6 +69,15 @@
     "fullDesc": "Conducted dissertation research on Non-Player Character decision-making using Utility AI and Deep Q-Learning as part of the MSc at Kingston University. The project explored innovative approaches to game AI behaviour, combining classical utility-based AI with modern deep reinforcement learning.\n\nThe system enabled NPCs to make context-aware decisions by weighing multiple competing goals via utility functions, while the DQL component allowed them to learn optimal strategies through gameplay experience. This research contributed to Kingston University's MSc programme and earned a Distinction grade.",
     "tags": ["Python", "Deep Q-Learning", "Utility AI", "Game AI", "Neural Networks"],
     "image": null,
+    "images": [],
+    "aim": "Research and implement a novel NPC decision-making system combining Utility AI with Deep Q-Learning for smarter game behaviour.",
+    "highlights": [
+      "Combined Utility AI with Deep Q-Learning for context-aware NPC decisions",
+      "NPCs learn optimal strategies through gameplay experience over time",
+      "Utility functions allow NPCs to weigh multiple competing goals simultaneously",
+      "Earned MSc Distinction at Kingston University"
+    ],
+    "category": "AI Research / Game Dev",
     "github": null,
     "live": null,
     "period": "2023 – 2024"
@@ -51,6 +88,14 @@
     "fullDesc": "Built a sentiment analysis system using NLP techniques to classify text as positive, negative or neutral. Used Python and various NLP libraries to preprocess and analyse text data.",
     "tags": ["Python", "NLP", "Machine Learning", "NLTK"],
     "image": null,
+    "images": [],
+    "aim": "Build a sentiment analysis model using NLP techniques to classify text as positive, negative or neutral.",
+    "highlights": [
+      "NLP pipeline to preprocess and analyse text data at scale",
+      "Sentiment classification model trained on real world text datasets",
+      "Explored multiple approaches including NLTK and ML based methods"
+    ],
+    "category": "AI / NLP",
     "github": null,
     "live": null,
     "period": "2022"
@@ -61,6 +106,14 @@
     "fullDesc": "Currently in development. Building an AI system that analyses messages and content to identify potential scams using machine learning and pattern recognition.",
     "tags": ["Python", "AI", "Machine Learning", "NLP"],
     "image": null,
+    "images": [],
+    "aim": "Build an AI system that detects and flags potential scam messages using machine learning and pattern recognition.",
+    "highlights": [
+      "Currently in active development",
+      "AI powered message analysis to identify scam patterns",
+      "Machine learning classification pipeline"
+    ],
+    "category": "AI / Safety",
     "github": null,
     "live": null,
     "period": "2026 – Present"
@@ -71,6 +124,15 @@
     "fullDesc": "Built a real AI chatbot using Cloudflare Workers AI and Llama 3 with prompt engineering to handle edge cases, jailbreaks and off-topic questions with humour.",
     "tags": ["Cloudflare Workers", "Llama 3", "Prompt Engineering", "JavaScript"],
     "image": null,
+    "images": [],
+    "aim": "Build a real AI assistant for my portfolio that answers recruiter questions about me for £0 per month.",
+    "highlights": [
+      "Cloudflare Workers AI with Llama 3 for free AI inference in production",
+      "Prompt engineering to handle edge cases, jailbreaks and off-topic questions",
+      "20 question limit per visitor to control costs and usage",
+      "Deployed and live at bhargavramakrishna.github.io"
+    ],
+    "category": "AI / Web",
     "github": null,
     "live": null,
     "period": "2025"
@@ -81,6 +143,15 @@
     "fullDesc": "Built a JD matcher that uses Cloudflare Workers AI to analyze job descriptions and match them against my skill set, categorizing results as strong matches, transferable skills and growth areas.",
     "tags": ["Cloudflare Workers AI", "Prompt Engineering", "JavaScript", "JSON"],
     "image": null,
+    "images": [],
+    "aim": "Let recruiters paste a job description and instantly see how my skills align with their requirements.",
+    "highlights": [
+      "Separate Cloudflare Worker for JD analysis",
+      "AI categorises skills as strong match, transferable or growth areas",
+      "Never shows 0 matches — always reframes positively with honest context",
+      "Deployed and live as part of portfolio"
+    ],
+    "category": "AI / Web",
     "github": null,
     "live": null,
     "period": "2025"
@@ -91,6 +162,14 @@
     "fullDesc": "Built multiple static websites during the early stages of learning web development. Experimented with HTML, CSS and JavaScript to create responsive and interactive web pages.",
     "tags": ["HTML", "CSS", "JavaScript"],
     "image": null,
+    "images": [],
+    "aim": "Build responsive static websites to learn frontend development and modern web design patterns.",
+    "highlights": [
+      "Created responsive landing pages and portfolio sites",
+      "Practiced semantic HTML, modular CSS, and vanilla JavaScript",
+      "Learned design systems, mobile-first layout, and accessibility basics"
+    ],
+    "category": "Web Development / Frontend",
     "github": null,
     "live": null,
     "period": "2019 – 2020"
@@ -101,6 +180,14 @@
     "fullDesc": "Built a RAG pipeline prototype using LangChain and vector databases to enable intelligent document querying. Users can upload documents and ask natural language questions.",
     "tags": ["Python", "LangChain", "Vector Databases", "RAG", "FastAPI"],
     "image": null,
+    "images": [],
+    "aim": "Build a retrieval-augmented generation pipeline for intelligent document search and summarization.",
+    "highlights": [
+      "Designed RAG workflows with vector database retrieval",
+      "Integrated natural language querying for uploaded documents",
+      "Built backend APIs to support AI-assisted document exploration"
+    ],
+    "category": "AI / Backend",
     "github": null,
     "live": null,
     "period": "2025"
@@ -111,6 +198,14 @@
     "fullDesc": "Conducted research into various AI techniques applicable to game development including pathfinding algorithms, decision trees, finite state machines and neural networks.",
     "tags": ["Game AI", "Python", "Research", "Neural Networks"],
     "image": null,
+    "images": [],
+    "aim": "Explore advanced AI techniques for games to improve NPC behaviour and procedural decision-making.",
+    "highlights": [
+      "Evaluated pathfinding, decision trees, and utility-based AI",
+      "Benchmarked neural network approaches for game logic",
+      "Documented AI patterns for gameplay systems and research"
+    ],
+    "category": "Research / Game AI",
     "github": null,
     "live": null,
     "period": "2023 – 2024"
@@ -121,6 +216,14 @@
     "fullDesc": "Built a production-ready REST API using FastAPI to serve machine learning models. Includes endpoints for model inference, data validation and error handling.",
     "tags": ["Python", "FastAPI", "REST API", "Machine Learning"],
     "image": null,
+    "images": [],
+    "aim": "Develop a production-ready FastAPI backend to serve AI model inference securely and reliably.",
+    "highlights": [
+      "Designed RESTful endpoints for model predictions",
+      "Implemented validation, error handling and performance tuning",
+      "Built model serving infrastructure for production use"
+    ],
+    "category": "Backend / AI",
     "github": null,
     "live": null,
     "period": "2025"
@@ -131,6 +234,14 @@
     "fullDesc": "Developed a complete game in Unity with custom gameplay mechanics, UI systems and game logic written in C#. Part of the game development work at [P1] Games.",
     "tags": ["Unity", "C#", "Game Development", "UI Systems"],
     "image": null,
+    "images": [],
+    "aim": "Ship a complete Unity game with polished mechanics, UI systems, and engaging gameplay.",
+    "highlights": [
+      "Developed custom gameplay mechanics and level systems",
+      "Built reusable UI and input handling systems",
+      "Optimized Unity scenes for player experience and performance"
+    ],
+    "category": "Game Dev / Unity",
     "github": null,
     "live": null,
     "period": "2024"

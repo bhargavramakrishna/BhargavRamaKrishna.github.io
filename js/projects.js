@@ -92,8 +92,9 @@ function applyMasonry() {
 }
 
 function projectThumb(p) {
-  if (p.image) {
-    return `<img src="${p.image}" alt="${p.title}" style="width:100%;height:100%;object-fit:cover;">`;
+  const image = p.images && p.images.length ? p.images[0] : p.image;
+  if (image) {
+    return `<img src="${image}" alt="${p.title}" style="width:100%;height:100%;object-fit:cover;">`;
   }
   return p.title.slice(0, 3).toUpperCase();
 }
@@ -136,24 +137,49 @@ function renderContact() {
 
 function openModal(i) {
   const p = allProjects[i];
-  const modalIcon = document.getElementById('modalIcon');
-  if (p.image) {
-    modalIcon.innerHTML = `<img src="${p.image}" alt="${p.title}" style="width:100%;height:100%;object-fit:cover;">`;
+  const modalHero = document.getElementById('modalHero');
+  const heroImage = p.images && p.images.length ? p.images[0] : p.image;
+  if (heroImage) {
+    modalHero.innerHTML = `<img src="${heroImage}" alt="${p.title}">`;
   } else {
-    modalIcon.textContent = p.title.slice(0, 3).toUpperCase();
+    const initials = p.title
+      .split(' ')
+      .filter(Boolean)
+      .slice(0, 2)
+      .map(word => word[0])
+      .join('')
+      .toUpperCase();
+    modalHero.innerHTML = `<div class="modal-hero-placeholder">${initials}</div>`;
   }
+
   document.getElementById('modalTitle').textContent = p.title;
-  document.getElementById('modalDesc').innerHTML = p.fullDesc
-    .split('\n\n')
-    .map(para => `<p style="margin-bottom:1rem">${para}</p>`)
-    .join('');
+  document.getElementById('modalCategory').textContent = p.category || '';
+  document.getElementById('modalPeriod').textContent = p.period || '';
+  document.getElementById('modalAim').textContent = p.aim || '';
   document.getElementById('modalTags').innerHTML =
-    p.tags.map(t => `<span class="modal-tag">${t}</span>`).join('');
-  let links = '';
-  if (p.github) links += `<a href="${p.github}" target="_blank" class="btn btn-sm">↗ GitHub</a>`;
-  if (p.live) links += `<a href="${p.live}" target="_blank" class="btn btn-sm btn-ghost">◈ Live Demo</a>`;
-  if (!links) links = `<span style="font-family:var(--mono);font-size:0.65rem;color:var(--muted);letter-spacing:1px;">Private / Academic Project</span>`;
-  document.getElementById('modalLinks').innerHTML = links;
+    (p.tags || []).map(t => `<span class="modal-tag">${t}</span>`).join('');
+  document.getElementById('modalActionLinks').innerHTML =
+    [
+      p.github ? `<a href="${p.github}" target="_blank" class="btn btn-sm">↗ GitHub</a>` : '',
+      p.live ? `<a href="${p.live}" target="_blank" class="btn btn-sm btn-ghost">◈ Live Demo</a>` : ''
+    ].filter(Boolean).join('');
+
+  document.getElementById('modalHighlights').innerHTML =
+    (p.highlights && p.highlights.length)
+      ? p.highlights.map(item => `<li>${item}</li>`).join('')
+      : `<li>No highlights available.</li>`;
+
+  document.getElementById('modalTech').innerHTML =
+    (p.tags || []).map(t => `<span>${t}</span>`).join('');
+
+  const footerLinks = [];
+  if (p.github) footerLinks.push(`<a href="${p.github}" target="_blank">GitHub</a>`);
+  if (p.live) footerLinks.push(`<a href="${p.live}" target="_blank">Live Demo</a>`);
+  document.getElementById('modalFooter').innerHTML =
+    footerLinks.length
+      ? footerLinks.join(' • ')
+      : `<span>Private / Academic Project</span>`;
+
   document.getElementById('modalOverlay').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
