@@ -66,6 +66,75 @@
     "period": "2024"
   },
   {
+  "title": "2.5D Puzzle Game — P1 Games",
+  "desc": "A 2.5D puzzle game built at P1 Game Company featuring player movement systems, object fading mechanics and dual character switching.",
+  "aim": "Implement core gameplay systems for a 2.5D puzzle game in a professional studio environment, focusing on smooth player mechanics and interactive puzzle elements.",
+  "about": "Developed as part of a team project at P1 Game Company where I worked as a programmer. My main responsibilities included implementing player movement systems and programming puzzle mechanics such as making walls turn invisible to aid navigation when solving challenges.\n\nThe project involved three core systems — a Rigidbody-based movement controller that rotates the player sprite to face the direction of movement, an ObjectFader that smoothly interpolates material opacity to reveal or hide puzzle elements, and a PlayerSwitch system that seamlessly transfers control between two characters while updating the camera and UI dynamically.",
+  "takeaways": "Working at a real game company was a completely different experience from university projects. Deadlines were real, standards were higher, and every system had to integrate cleanly with other people's work. I learned how to write code that other developers can actually use — clean, well structured and predictable. The ObjectFader in particular taught me how much polish matters — a smooth fade feels completely different from an instant toggle.",
+  "thanks": "Thanks to the team at P1 Game Company — designers, animators and fellow programmers — for a genuinely collaborative and professional development experience.",
+  "highlights": [
+    "Rigidbody movement system with sprite rotation based on input direction",
+    "ObjectFader smoothly interpolates material opacity for puzzle visibility mechanics",
+    "PlayerSwitch transfers control between two characters updating camera and UI seamlessly",
+    "Integrated systems with animations, UI and environmental mechanics from other team members"
+  ],
+  "tags": ["Unity", "C#", "Rigidbody Physics", "Game Dev", "UI Systems", "Camera Systems"],
+  "image": null,
+  "github": null,
+  "live": null,
+  "period": "Sep 2024 – Jan 2025",
+  "category": "Game Dev / Professional",
+  "images": []
+  },
+  {
+  "title": "2D Shooter Game",
+  "desc": "A 2D shooter where players pilot a rocket through waves of enemies, collecting fuel and power-ups while upgrading speed, health and fuel capacity.",
+  "aim": "Implement enemy AI systems, procedural spawning and UI menus for a 2D shooter game in a team environment.",
+  "about": "Developed as part of a team project at P1 Game Company where I worked as the lead programmer (P1). Players pilot a rocket through waves of enemies, surviving as long as possible while collecting fuel and power-ups and unlocking upgrades for speed, health and fuel capacity.\n\nMy responsibilities covered two main areas — enemy systems and UI. For enemies I implemented distinct behaviour patterns for each enemy type: the StormCloud moves back and forth flipping direction when reaching a set distance, the HotAirBalloon takes damage from bullets and randomly spawns fuel or gold pickups on death, and the Airplane spawner procedurally instantiates enemies at random locations on a timed interval. I also built the full menu system including upgrade selection, pause screen and HUD elements.",
+  "takeaways": "This project taught me how to design enemy systems that feel varied and fair without being overwhelming. Each enemy needed its own personality — movement pattern, reward, threat level — and balancing all of that required constant playtesting and iteration. I also got much more comfortable with Unity's collision system and learned how procedural spawning can dramatically change the feel of a game without adding much code complexity.",
+  "thanks": "Thanks to the full team at P1 Game Company for the collaboration — particularly the designers who helped balance the upgrade system and the artists who brought the enemies to life.",
+  "highlights": [
+    "StormCloud enemy with back and forth movement pattern and sprite flipping",
+    "HotAirBalloon with health system, bullet collision and random pickup spawning on death",
+    "Procedural airplane spawner instantiating enemies at random locations on timed intervals",
+    "Full menu system including upgrade selection, pause screen and HUD",
+    "Score and gold system integrated across all enemy types"
+  ],
+  "tags": ["Unity", "C#", "Game AI", "Procedural Spawning", "UI Systems", "2D Game Dev"],
+  "image": null,
+  "github": null,
+  "live": null,
+  "period": "Sep 2024 – Jan 2025",
+  "category": "Game Dev / Professional",
+  "images": []
+},
+{
+  "title": "Multiplayer Game — Photon Unity",
+  "desc": "A real-time multiplayer game built with Photon Unity Networking featuring character selection, abilities, procedural maps, 2D puzzles and networked synchronization.",
+  "aim": "Build a fully networked multiplayer game with real-time synchronization, character abilities and dynamic procedural content using Photon Unity Networking.",
+  "about": "Developed a real-time multiplayer game using Photon Unity Networking (PUN2) as part of a module at Kingston University. Players join a shared server, select their own character prefab, and explore a procedurally updated map featuring flying islands, portals, dynamic object placement and timer-based 2D puzzles.\n\nMy contributions spanned almost every system in the game. I implemented networked player movement — switching from Rigidbody to CharacterController for better multiplayer responsiveness — and built the character selection system using RPCs to synchronize each player's chosen prefab across all clients. I programmed three special abilities: invisibility (disabling mesh renderers via RPC), steal (Raycast-based artifact theft from other players), and freeze (disabling an enemy's collider for 5 seconds across all clients).\n\nOn the map side I built randomized object placement that generates a different layout every session, portal teleportation, flying island spawn points and a water shader for visual polish. The 2D puzzle system dynamically selects puzzles from a tagged list, integrates with NPC characters that roam within a radius, and uses a shared IPuzzleComponent interface for consistent win, lose and reset logic across all puzzle types.",
+  "takeaways": "Multiplayer is genuinely one of the hardest things to program — every system that works perfectly in single player breaks in unexpected ways the moment a second client joins. The biggest lesson was that ownership matters more than anything. Understanding which client owns which object, when to use RPCs versus PhotonView sync, and how to avoid race conditions taught me more about software architecture than any other project I have done.",
+  "thanks": "Thanks to my teammates at Kingston University — designers, artists and fellow programmers — who contributed to the map design, puzzle content, character art and overall game vision. This was genuinely a team effort.",
+  "highlights": [
+    "Photon Unity Networking with PhotonView and RPC calls for real-time synchronization",
+    "Character selection system syncing chosen prefabs across all clients via RPC",
+    "CharacterController movement replacing Rigidbody for better multiplayer responsiveness",
+    "Three networked abilities — invisibility, steal and freeze — all synced via RPC",
+    "Randomized object placement generating a unique map layout every session",
+    "Portal teleportation system and flying island spawn points",
+    "2D puzzle system with timer, win/lose conditions and IPuzzleComponent interface",
+    "NPC characters that roam within a radius and trigger puzzle popups on player proximity",
+    "Unity Spline camera animation and water shader for visual polish"
+  ],
+  "tags": ["Unity", "C#", "Photon PUN2", "Multiplayer", "Networking", "RPCs", "Game AI", "Procedural Generation"],
+  "image": null,
+  "github": null,
+  "live": null,
+  "period": "2024",
+  "category": "Game Dev / Multiplayer",
+  "images": []
+},
+  {
     "title": "GA Enemies — Adaptive Game AI",
     "desc": "Enemy AI that evolves using a Genetic Algorithm based on player performance, creating dynamic difficulty scaling.",
     "about": "Developed an adaptive enemy AI system in Unity where enemy strength dynamically evolves based on how well the player performs. Using a Genetic Algorithm, the system selects and mutates enemy attributes — speed, strength and difficulty — creating a natural progression that never feels static.\n\nA loot system complements this by rewarding players with bonus attributes from enemy drops, allowing player progression to keep pace with the evolving enemies.",
