@@ -143,7 +143,7 @@ function removeTyping() {
 // Get last N messages for history
 function getMessageHistory(n = HISTORY_LENGTH) {
   return conversationHistory.slice(-n).map(msg => ({
-    role: msg.role,
+    role: msg.role === 'ai' ? 'assistant' : 'user',
     content: msg.content
   }));
 }
