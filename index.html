@@ -4,47 +4,49 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Krishna Chitrala · AI & Software Developer</title>
-  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Exo+2:wght@400;500;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <script src="data/content.js"></script>
 </head>
 <body>
 
-<canvas id="particleCanvas" style="position:fixed;inset:0;z-index:0;pointer-events:none;"></canvas>
-<div class="cursor" id="cursor"></div>
-
 <!-- NAV -->
 <nav>
-  <a class="nav-logo" href="index.html">KC://dev</a>
+  <a class="nav-logo" href="index.html">[KC]</a>
   <button class="nav-hamburger" id="navHamburger" onclick="toggleMenu()">
     <span></span>
     <span></span>
     <span></span>
   </button>
   <ul class="nav-links">
-    <li><a href="index.html" onclick="closeMenu()">KC:dev</a></li>
-    <li><a href="pages/about.html" onclick="closeMenu()">about</a></li>
-    <li><a href="pages/experience.html" onclick="closeMenu()">experience</a></li>
-    <li><a href="pages/timeline.html" onclick="closeMenu()">timeline</a></li>
-    <li><a href="pages/blog.html" onclick="closeMenu()">blog</a></li>
+    <li><a href="index.html" onclick="closeMenu()">HOME</a></li>
+    <li><a href="pages/about.html" onclick="closeMenu()">ABOUT</a></li>
+    <li><a href="pages/experience.html" onclick="closeMenu()">EXPERIENCE</a></li>
+    <li><a href="pages/timeline.html" onclick="closeMenu()">TIMELINE</a></li>
+    <li><a href="pages/blog.html" onclick="closeMenu()">BLOG</a></li>
   </ul>
+  <div class="nav-available">
+    <div class="nav-available-dot"></div>
+    [ AVAILABLE ]
+  </div>
 </nav>
 
 <!-- MOBILE MENU OVERLAY -->
 <div class="mobile-menu-overlay" id="mobileMenuOverlay">
   <div class="mobile-menu">
-    <a href="index.html" onclick="closeMenu()">KC:dev</a>
-    <a href="pages/about.html" onclick="closeMenu()">about</a>
-    <a href="pages/experience.html" onclick="closeMenu()">experience</a>
-    <a href="pages/timeline.html" onclick="closeMenu()">timeline</a>
-    <a href="pages/blog.html" onclick="closeMenu()">blog</a>
+    <a href="index.html" onclick="closeMenu()">HOME</a>
+    <a href="pages/about.html" onclick="closeMenu()">ABOUT</a>
+    <a href="pages/experience.html" onclick="closeMenu()">EXPERIENCE</a>
+    <a href="pages/timeline.html" onclick="closeMenu()">TIMELINE</a>
+    <a href="pages/blog.html" onclick="closeMenu()">BLOG</a>
   </div>
 </div>
 
 <!-- HERO -->
 <section id="hero">
+  <div class="hero-frame-tl"></div>
+  <div class="hero-frame-br"></div>
   <div class="hero-grid"></div>
-  <div class="hero-glow"></div>
   <div class="hero-inner">
     <div class="hero-tag">
       <div class="hero-tag-dot"></div>
@@ -54,6 +56,24 @@
     <p class="hero-role" id="heroRole"></p>
     <p class="hero-location" id="heroLocation"></p>
     <div class="hero-btns" id="heroBtns"></div>
+    <div class="hero-stats">
+      <div class="hero-stat-item">
+        <div class="hero-stat-num">MSc</div>
+        <div class="hero-stat-label">Distinction</div>
+      </div>
+      <div class="hero-stat-item">
+        <div class="hero-stat-num">2+</div>
+        <div class="hero-stat-label">Years Building</div>
+      </div>
+      <div class="hero-stat-item">
+        <div class="hero-stat-num">10+</div>
+        <div class="hero-stat-label">AI Projects</div>
+      </div>
+      <div class="hero-stat-item">
+        <div class="hero-stat-num">2</div>
+        <div class="hero-stat-label">Certifications</div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -80,6 +100,7 @@
             <div class="chat-header-sub">trained on krishna's full profile</div>
           </div>
         </div>
+        <div class="chat-online-badge">ONLINE</div>
       </div>
       <div class="chat-messages" id="chatMessages">
         <div class="chat-msg">
@@ -130,7 +151,7 @@
 </section>
 
 <footer>
-  <span>KC://dev</span>
+  <span>[KC]</span>
   <span>Krishna Chitrala · 2026</span>
   <span>Rugby, UK</span>
 </footer>
@@ -153,7 +174,6 @@
   </div>
 </div>
 
-<script src="js/particles.js"></script>
 <script src="js/projects.js"></script>
 <script src="js/chat.js"></script>
 </body>

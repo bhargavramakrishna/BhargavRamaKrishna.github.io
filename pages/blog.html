@@ -3,38 +3,39 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Blog · KC://dev</title>
-  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+  <title>Blog · KC</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Exo+2:wght@400;500;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 
-<canvas id="particleCanvas" style="position:fixed;inset:0;z-index:0;pointer-events:none;"></canvas>
-<div class="cursor" id="cursor"></div>
-
 <nav>
-  <a class="nav-logo" href="../index.html">KC://dev</a>
+  <a class="nav-logo" href="../index.html">[KC]</a>
   <button class="nav-hamburger" id="navHamburger" onclick="toggleMenu()">
     <span></span>
     <span></span>
     <span></span>
   </button>
   <ul class="nav-links">
-    <li><a href="../index.html" onclick="closeMenu()">KC:dev</a></li>
-    <li><a href="about.html" onclick="closeMenu()">about</a></li>
-    <li><a href="experience.html" onclick="closeMenu()">experience</a></li>
-    <li><a href="timeline.html" onclick="closeMenu()">timeline</a></li>
-    <li><a href="blog.html" onclick="closeMenu()">blog</a></li>
+    <li><a href="../index.html" onclick="closeMenu()">HOME</a></li>
+    <li><a href="about.html" onclick="closeMenu()">ABOUT</a></li>
+    <li><a href="experience.html" onclick="closeMenu()">EXPERIENCE</a></li>
+    <li><a href="timeline.html" onclick="closeMenu()">TIMELINE</a></li>
+    <li><a href="blog.html" onclick="closeMenu()">BLOG</a></li>
   </ul>
+  <div class="nav-available">
+    <div class="nav-available-dot"></div>
+    [ AVAILABLE ]
+  </div>
 </nav>
 
 <div class="mobile-menu-overlay" id="mobileMenuOverlay">
   <div class="mobile-menu">
-    <a href="../index.html" onclick="closeMenu()">KC:dev</a>
-    <a href="about.html" onclick="closeMenu()">about</a>
-    <a href="experience.html" onclick="closeMenu()">experience</a>
-    <a href="timeline.html" onclick="closeMenu()">timeline</a>
-    <a href="blog.html" onclick="closeMenu()">blog</a>
+    <a href="../index.html" onclick="closeMenu()">HOME</a>
+    <a href="about.html" onclick="closeMenu()">ABOUT</a>
+    <a href="experience.html" onclick="closeMenu()">EXPERIENCE</a>
+    <a href="timeline.html" onclick="closeMenu()">TIMELINE</a>
+    <a href="blog.html" onclick="closeMenu()">BLOG</a>
   </div>
 </div>
 
@@ -56,7 +57,7 @@
       </div>
       <div class="blog-card">
         <div class="blog-card-title">First post coming soon...</div>
-        <div class="blog-card-text">I’m preparing content around AI, games, and the learning path from MSc to freelance projects.</div>
+        <div class="blog-card-text">I'm preparing content around AI, games, and the learning path from MSc to freelance projects.</div>
       </div>
     </div>
     <p class="blog-note">Check back soon or follow me on LinkedIn for the latest updates.</p>
@@ -64,12 +65,11 @@
 </section>
 
 <footer>
-  <span>KC://dev</span>
-  <span>Krishna Chitrala · 2025</span>
+  <span>[KC]</span>
+  <span>Krishna Chitrala · 2026</span>
   <span>Rugby, UK</span>
 </footer>
 
-<script src="../js/particles.js"></script>
 <script src="../js/chat.js"></script>
 </body>
 </html>
