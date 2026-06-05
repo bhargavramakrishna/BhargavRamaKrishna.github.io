@@ -17,7 +17,6 @@ function closeMenu() {
 const WORKER_URL = 'https://portfolio-chat.bhargavramkrishna.workers.dev';
 const MATCH_URL = 'https://portfolio-jd-matcher.bhargavramkrishna.workers.dev';
 const LINKEDIN_URL = 'https://www.linkedin.com/in/bhargav-rama-krishna-chitrala-1b36a2189';
-const MAX_QUESTIONS = 20;
 const HISTORY_LENGTH = 6;
 const DEBOUNCE_DELAY = 1000;
 const MIN_JOB_DESCRIPTION_LENGTH = 50;
@@ -37,74 +36,6 @@ function robotAvatarHTML() {
   return `<img src="${getRobotAvatarSrc()}" alt="AI" style="width:100%; height:100%; object-fit:cover; border-radius:50%;">`;
 }
 
-// Initialize question count
-function initializeQuestionCount() {
-  const chatInput = document.getElementById('chatInput');
-  if (!chatInput) return;
-  const count = localStorage.getItem('chatQuestionsUsed');
-  if (count === null) {
-    localStorage.setItem('chatQuestionsUsed', '0');
-    updateQuestionDisplay();
-  } else {
-    updateQuestionDisplay();
-  }
-}
-
-// Update question count display
-function updateQuestionDisplay() {
-  const used = parseInt(localStorage.getItem('chatQuestionsUsed') || '0');
-  const remaining = MAX_QUESTIONS - used;
-  const counter = document.getElementById('questionCounter');
-  
-  if (counter) {
-    if (remaining > 0) {
-      counter.textContent = `${remaining} remaining`;
-      counter.style.color = '#666';
-    } else {
-      counter.textContent = '0 remaining';
-      counter.style.color = '#e74c3c';
-    }
-  }
-}
-
-// Check if question limit reached
-function isLimitReached() {
-  const used = parseInt(localStorage.getItem('chatQuestionsUsed') || '0');
-  return used >= MAX_QUESTIONS;
-}
-
-// Show limit reached message
-function showLimitReached() {
-  const msgs = document.getElementById('chatMessages');
-  const div = document.createElement('div');
-  div.className = 'chat-msg ai';
-  div.innerHTML = `
-    <div class="chat-avatar">${robotAvatarHTML()}</div>
-    <div class="chat-bubble">
-      <p>You've used all ${MAX_QUESTIONS} questions! 🎉</p>
-      <p>Connect with Krishna directly on LinkedIn for more conversation:</p>
-      <a href="${LINKEDIN_URL}" target="_blank" class="linkedin-button" style="
-        display: inline-block;
-        margin-top: 10px;
-        padding: 10px 20px;
-        background-color: #0077b5;
-        color: white;
-        text-decoration: none;
-        border-radius: 4px;
-        font-weight: bold;
-        cursor: pointer;
-      ">Open LinkedIn</a>
-    </div>
-  `;
-  msgs.appendChild(div);
-  msgs.scrollTop = msgs.scrollHeight;
-  
-  // Disable input
-  const input = document.getElementById('chatInput');
-  const sendBtn = document.getElementById('sendButton');
-  if (input) input.disabled = true;
-  if (sendBtn) sendBtn.disabled = true;
-}
 
 // Add message to chat
 function addMessage(text, role, saveToHistory = true) {
@@ -332,12 +263,6 @@ async function handleChat() {
     return;
   }
   
-  // Check question limit
-  if (isLimitReached()) {
-    showLimitReached();
-    return;
-  }
-  
   // Update state
   isSending = true;
   lastSendTime = now;
@@ -358,15 +283,6 @@ async function handleChat() {
     removeTyping();
     addMessage(answer, 'ai', !isError);
     
-    // Increment question count
-    const used = parseInt(localStorage.getItem('chatQuestionsUsed') || '0');
-    localStorage.setItem('chatQuestionsUsed', (used + 1).toString());
-    updateQuestionDisplay();
-    
-    // Check if limit reached
-    if (isLimitReached()) {
-      setTimeout(showLimitReached, 500);
-    }
   } catch (error) {
     console.error('Chat error:', error);
     removeTyping();
@@ -393,8 +309,6 @@ function sendSuggestion(btn) {
 
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', () => {
-  initializeQuestionCount();
-  
   const input = document.getElementById('chatInput');
   if (input) {
     input.addEventListener('keydown', e => {
