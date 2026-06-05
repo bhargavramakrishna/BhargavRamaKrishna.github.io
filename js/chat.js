@@ -28,6 +28,15 @@ let conversationHistory = [];
 let isSending = false;
 let lastSendTime = 0;
 
+function getRobotAvatarSrc() {
+  const btn = document.querySelector('#floatingChatButton img');
+  return btn ? btn.getAttribute('src') : 'assets/images/robot.png';
+}
+
+function robotAvatarHTML() {
+  return `<img src="${getRobotAvatarSrc()}" alt="AI" style="width:100%; height:100%; object-fit:cover; border-radius:50%;">`;
+}
+
 // Initialize question count
 function initializeQuestionCount() {
   const chatInput = document.getElementById('chatInput');
@@ -70,7 +79,7 @@ function showLimitReached() {
   const div = document.createElement('div');
   div.className = 'chat-msg ai';
   div.innerHTML = `
-    <div class="chat-avatar">AI</div>
+    <div class="chat-avatar">${robotAvatarHTML()}</div>
     <div class="chat-bubble">
       <p>You've used all ${MAX_QUESTIONS} questions! 🎉</p>
       <p>Connect with Krishna directly on LinkedIn for more conversation:</p>
@@ -102,7 +111,7 @@ function addMessage(text, role) {
   const msgs = document.getElementById('chatMessages');
   const div = document.createElement('div');
   div.className = `chat-msg ${role}`;
-  div.innerHTML = `<div class="chat-avatar">${role === 'user' ? 'YOU' : 'AI'}</div><div class="chat-bubble">${text}</div>`;
+  div.innerHTML = `<div class="chat-avatar">${role === 'user' ? 'YOU' : robotAvatarHTML()}</div><div class="chat-bubble">${text}</div>`;
   msgs.appendChild(div);
   msgs.scrollTop = msgs.scrollHeight;
   
@@ -121,7 +130,7 @@ function showTyping() {
   const div = document.createElement('div');
   div.className = 'chat-msg ai';
   div.id = 'typingIndicator';
-  div.innerHTML = `<div class="chat-avatar">AI</div><div class="chat-typing"><span></span><span></span><span></span></div>`;
+  div.innerHTML = `<div class="chat-avatar">${robotAvatarHTML()}</div><div class="chat-typing"><span></span><span></span><span></span></div>`;
   msgs.appendChild(div);
   msgs.scrollTop = msgs.scrollHeight;
 }

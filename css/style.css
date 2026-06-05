@@ -1224,16 +1224,16 @@ h2 {
 }
 
 .chat-avatar {
-  width: 30px; height: 30px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
   border: 1px solid var(--border-color);
+  padding: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--mono);
-  font-size: 0.5rem;
-  color: var(--blue);
-  background: var(--card);
-  flex-shrink: 0;
 }
 
 /* AI bubble */
@@ -1355,8 +1355,8 @@ h2 {
 }
 
 .floating-chat-button {
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
   border-radius: 0;
   border: none;
   background: transparent;
@@ -1372,8 +1372,8 @@ h2 {
 }
 
 .floating-chat-button img {
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
   object-fit: contain;
   filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
   transition: all 0.2s;
@@ -2131,7 +2131,7 @@ footer span { color: var(--blue); }
   .chat-header { padding: 0.8rem 1rem; margin-bottom: 0.5rem; }
   .chat-messages { border: 1px solid var(--border-color); min-height: 180px; max-height: 250px; padding: 1rem; margin-bottom: 0.5rem; }
   .chat-msg { max-width: 95%; gap: 0.5rem; }
-  .chat-avatar { width: 24px; height: 24px; font-size: 0.46rem; }
+  .chat-avatar { width: 24px; height: 24px; }
   .chat-bubble { padding: 0.7rem 0.9rem; font-size: 0.8rem; }
   .chat-suggestions { border: 1px solid var(--border-color); border-bottom: none; padding: 0.5rem 0.75rem; gap: 0.3rem; }
   .chat-suggest { flex: 1 1 calc(50% - 0.15rem); min-height: 40px; }
