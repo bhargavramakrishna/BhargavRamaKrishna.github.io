@@ -6,6 +6,166 @@
   <title>Blog · KC</title>
   <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Exo+2:wght@400;500;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css">
+  <style>
+    /* ── Blog card extras ── */
+    .blog-card { cursor: pointer; display: flex; flex-direction: column; }
+    .blog-card-category {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--blue);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 0.25rem;
+    }
+    .blog-card-footer {
+      display: flex;
+      gap: 1rem;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-top: auto;
+      padding-top: 0.75rem;
+    }
+
+    /* ── Blog modal overlay ── */
+    .blog-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(10,10,20,0.82);
+      z-index: 300;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+    .blog-modal-overlay.open { display: flex; }
+
+    .blog-modal {
+      background: var(--card);
+      border: 1px solid var(--border-color);
+      max-width: 740px;
+      width: 100%;
+      max-height: 88vh;
+      overflow-y: auto;
+      position: relative;
+      padding: 2.75rem 2.5rem 2.5rem;
+    }
+    .blog-modal::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 28px; height: 28px;
+      border-top: 2px solid var(--blue);
+      border-left: 2px solid var(--blue);
+    }
+    .blog-modal::after {
+      content: '';
+      position: absolute;
+      bottom: 0; right: 0;
+      width: 28px; height: 28px;
+      border-bottom: 2px solid var(--blue);
+      border-right: 2px solid var(--blue);
+    }
+
+    .blog-modal-close {
+      position: absolute;
+      top: 1rem; right: 1rem;
+      background: none;
+      border: 1px solid var(--border-color);
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      padding: 0.3rem 0.7rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      letter-spacing: 1px;
+    }
+    .blog-modal-close:hover { border-color: var(--blue); color: var(--blue); }
+
+    /* ── Modal content blocks ── */
+    .bm-meta {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      margin-bottom: 1.25rem;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      flex-wrap: wrap;
+    }
+    .bm-category {
+      background: var(--navy);
+      color: var(--blue);
+      padding: 0.2rem 0.65rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .bm-date, .bm-readtime { color: var(--muted); }
+
+    .bm-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.85rem;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.2;
+      margin-bottom: 0.75rem;
+    }
+    .bm-subtitle {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+    .bm-divider {
+      height: 1px;
+      background: var(--border-color);
+      margin-bottom: 1.75rem;
+    }
+    .bm-intro {
+      color: var(--navy);
+      font-size: 0.97rem;
+      line-height: 1.8;
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+      padding: 1rem 1.25rem;
+      background: var(--bg2);
+      border-left: 3px solid var(--blue);
+    }
+    .bm-heading {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin: 2rem 0 0.65rem;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    .bm-paragraph {
+      color: var(--text);
+      font-size: 0.92rem;
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+    .bm-list {
+      margin: 0 0 1.25rem 0;
+      padding-left: 1.4rem;
+      color: var(--text);
+      font-size: 0.92rem;
+      line-height: 2;
+    }
+    .bm-list li { margin-bottom: 0.15rem; }
+    .bm-code {
+      background: var(--navy);
+      color: var(--blue);
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      padding: 1.25rem 1.5rem;
+      overflow-x: auto;
+      margin: 1.25rem 0;
+      line-height: 1.65;
+      border: 1px solid rgba(77,184,255,0.2);
+    }
+    .bm-code code { background: none; padding: 0; }
+  </style>
 </head>
 <body>
 
@@ -45,22 +205,8 @@
   <div class="section-wrap">
     <div class="section-label">// 01 — blog</div>
     <h2>Blog & Content</h2>
-    <p class="blog-subtext">Coming soon — I write about AI, software development and my learning journey.</p>
-    <div class="blog-grid">
-      <div class="blog-card">
-        <div class="blog-card-title">First post coming soon...</div>
-        <div class="blog-card-text">A short update on the first AI project post is on the way. Stay tuned.</div>
-      </div>
-      <div class="blog-card">
-        <div class="blog-card-title">First post coming soon...</div>
-        <div class="blog-card-text">This space will share technical notes, lessons learned, and prompt engineering ideas.</div>
-      </div>
-      <div class="blog-card">
-        <div class="blog-card-title">First post coming soon...</div>
-        <div class="blog-card-text">I'm preparing content around AI, games, and the learning path from MSc to freelance projects.</div>
-      </div>
-    </div>
-    <p class="blog-note">Check back soon or follow me on LinkedIn for the latest updates.</p>
+    <p class="blog-subtext">Technical write-ups on AI, software development, and the lessons learned while building.</p>
+    <div class="blog-grid"></div>
   </div>
 </section>
 
@@ -80,7 +226,7 @@
     <div class="floating-chat-header">
       <div>
         <div class="floating-chat-title">[KC] ASSISTANT · ONLINE</div>
-        <div class="floating-chat-counter" id="questionCounter">20 remaining</div>
+        <div class="floating-chat-counter" id="questionCounter"></div>
       </div>
       <button id="floatingChatClose" class="floating-chat-close" aria-label="Close chat">✕</button>
     </div>
@@ -103,7 +249,15 @@
   </div>
 </div>
 
+<div class="blog-modal-overlay" id="blogModalOverlay">
+  <div class="blog-modal">
+    <button class="blog-modal-close" id="blogModalClose">✕ CLOSE</button>
+    <div id="blogModalContent"></div>
+  </div>
+</div>
+
 <script src="../js/chat.js"></script>
 <script src="../js/floating-chat.js"></script>
+<script src="../js/blog.js"></script>
 </body>
 </html>

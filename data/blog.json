@@ -1,0 +1,52 @@
+{
+  "posts": [
+    {
+      "id": "cloudflare-portfolio-chat",
+      "title": "Building a Portfolio Chatbot with Cloudflare Workers AI",
+      "subtitle": "How I shipped a free, serverless AI chat in 3 days using Cloudflare Workers and Llama 3.1",
+      "date": "June 2026",
+      "category": "AI / Backend",
+      "readTime": "5 min read",
+      "tags": ["Cloudflare Workers", "LLM", "Llama 3.1", "Serverless", "Prompt Engineering"],
+      "content": [
+        { "type": "intro", "text": "I wanted my portfolio to do something most portfolios don't — actually answer questions about me. Not a contact form, not a FAQ list. A real conversational AI that a recruiter could ask anything and get a useful answer instantly. The catch: it had to be completely free to run." },
+        { "type": "heading", "text": "Why Cloudflare Workers?" },
+        { "type": "paragraph", "text": "My first instinct was to run a local LLM — something like Ollama with Llama 3 running on my own machine. That falls apart immediately for a portfolio: my machine isn't always on, and I can't expose a local server to the public internet reliably." },
+        { "type": "paragraph", "text": "A traditional backend was the next option — FastAPI on a VPS, for example. But that means paying for a server, managing uptime, and dealing with cold starts. For a portfolio chatbot that might get 10 requests a day, that's overkill." },
+        { "type": "paragraph", "text": "Cloudflare Workers solved everything at once. It's serverless, globally distributed, and has Workers AI built in. I can call a hosted Llama 3.1 8B model directly using env.AI.run() without provisioning anything. The free tier covers 100,000 requests per day — for a portfolio, that's effectively unlimited." },
+        { "type": "heading", "text": "The Architecture" },
+        { "type": "paragraph", "text": "The system has three parts:" },
+        { "type": "list", "items": [
+          "Frontend (vanilla JS) — a floating chat widget that captures user messages and conversation history, then POSTs them to the worker",
+          "Cloudflare Worker — receives the message and history, builds a prompt with all of Krishna's context, calls Llama 3.1, and returns { answer: '...' }",
+          "Cloudflare Workers AI — hosts and runs @cf/meta/llama-3.1-8b-instruct, no setup required"
+        ]},
+        { "type": "code", "lang": "json", "text": "{\n  \"message\": \"What projects has Krishna built?\",\n  \"history\": [\n    { \"role\": \"user\", \"content\": \"Is he available to hire?\" },\n    { \"role\": \"assistant\", \"content\": \"Yes! Krishna is open to...\" }\n  ]\n}" },
+        { "type": "paragraph", "text": "The worker takes that payload, prepends a system prompt packed with everything about me — education, skills, experience, projects, certifications — and sends the full conversation to Llama. The model responds and the worker returns the answer as JSON." },
+        { "type": "heading", "text": "The Prompt Engineering Problem" },
+        { "type": "paragraph", "text": "This is where most of the 3 days went. Getting Llama to behave like a knowledgeable assistant rather than a generic chatbot required a lot of iteration." },
+        { "type": "list", "items": [
+          "Staying on topic — without strict instructions Llama would answer general AI questions instead of talking about Krishna specifically",
+          "Tone — needed to sound confident and professional, not robotic",
+          "Accuracy — the model had to stick to the facts provided and not hallucinate experience I don't have",
+          "Rules enforcement — explicit instructions like never say you don't know, always refer back to Krishna's actual background"
+        ]},
+        { "type": "heading", "text": "Bugs I Hit" },
+        { "type": "list", "items": [
+          "CORS — the worker blocked requests from GitHub Pages. Fixed by adding Access-Control-Allow-Origin: * headers to every response including the OPTIONS preflight",
+          "role: ai vs role: assistant — the frontend stored AI messages with role: ai but Llama expects role: assistant. This corrupted conversation history on the second message. Fixed with a ternary in getMessageHistory()",
+          "JSON parsing — Llama occasionally wraps responses in markdown code fences. Added a strip step before JSON.parse() to handle this"
+        ]},
+        { "type": "heading", "text": "What I'd Do Differently" },
+        { "type": "list", "items": [
+          "RAG approach — store context in a vector database and retrieve only relevant chunks per question instead of stuffing everything into the system prompt",
+          "Streaming — right now the full response loads at once. Streaming tokens would feel much more natural",
+          "Benchmark other models — Cloudflare also has Mistral and Gemma available, worth testing response quality"
+        ]},
+        { "type": "heading", "text": "The Result" },
+        { "type": "paragraph", "text": "A fully serverless, completely free AI chatbot running on Llama 3.1, deployed globally via Cloudflare's edge network, built in 3 days. Any recruiter visiting the portfolio can have a real conversation about my background without me being online." },
+        { "type": "paragraph", "text": "The biggest lesson: the hard part of building with LLMs isn't the API call. It's the prompt engineering — getting the model to behave exactly how you need it in your specific context. That's where the real work is." }
+      ]
+    }
+  ]
+}
