@@ -1,10 +1,22 @@
+function updateChatUnreadDot() {
+  const button = document.getElementById('floatingChatButton');
+  const dot = button ? button.querySelector('.chat-unread-dot') : null;
+  if (!dot) return;
+  const opened = localStorage.getItem('chatOpened') === 'true';
+  dot.style.display = opened ? 'none' : 'block';
+}
+
 function openFloatingChat() {
   const panel = document.getElementById('floatingChatPanel');
   const button = document.getElementById('floatingChatButton');
   if (!panel) return;
   panel.classList.add('open');
   panel.setAttribute('aria-hidden', 'false');
-  if (button) button.setAttribute('aria-expanded', 'true');
+  if (button) {
+    button.setAttribute('aria-expanded', 'true');
+    localStorage.setItem('chatOpened', 'true');
+    updateChatUnreadDot();
+  }
   const input = document.getElementById('chatInput');
   if (input) input.focus();
 }
@@ -79,6 +91,7 @@ function initFloatingChat() {
     });
   }
 
+  updateChatUnreadDot();
   ensureChatWidgetHash();
   window.addEventListener('hashchange', ensureChatWidgetHash);
 }
