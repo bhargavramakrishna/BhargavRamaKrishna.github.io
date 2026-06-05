@@ -406,6 +406,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  const sendButton = document.getElementById('sendButton');
+  if (sendButton) {
+    sendButton.addEventListener('click', handleChat);
+  }
+
   const analyzeButton = document.getElementById('analyzeButton');
   if (analyzeButton) {
     analyzeButton.addEventListener('click', analyzeJobDescription);
