@@ -710,9 +710,8 @@ h2 {
 
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: 10px;
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.25rem;
 }
 
 .project-card {
@@ -766,7 +765,7 @@ h2 {
 
 .project-thumb {
   width: 100%;
-  height: 190px;
+  height: 150px;
   background: var(--bg2);
   display: flex;
   align-items: center;
@@ -796,7 +795,7 @@ h2 {
   letter-spacing: -2px;
 }
 
-.project-body { padding: 1.4rem; }
+.project-body { padding: 1rem; }
 
 .project-tags {
   display: flex;
@@ -816,14 +815,14 @@ h2 {
 }
 
 .project-title {
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 700;
   color: var(--navy);
   margin-bottom: 0.5rem;
 }
 
 .project-desc {
-  font-size: 0.82rem;
+  font-size: 0.78rem;
   color: var(--muted);
   line-height: 1.55;
 }
