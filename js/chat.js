@@ -107,20 +107,19 @@ function showLimitReached() {
 }
 
 // Add message to chat
-function addMessage(text, role) {
+function addMessage(text, role, saveToHistory = true) {
   const msgs = document.getElementById('chatMessages');
   const div = document.createElement('div');
   div.className = `chat-msg ${role}`;
   div.innerHTML = `<div class="chat-avatar">${role === 'user' ? 'YOU' : robotAvatarHTML()}</div><div class="chat-bubble">${text}</div>`;
   msgs.appendChild(div);
   msgs.scrollTop = msgs.scrollHeight;
-  
-  // Store in history
-  conversationHistory.push({ role, text });
-  
-  // Keep only last N messages
-  if (conversationHistory.length > HISTORY_LENGTH * 2) {
-    conversationHistory = conversationHistory.slice(-HISTORY_LENGTH * 2);
+
+  if (saveToHistory) {
+    conversationHistory.push({ role, content: text });
+    if (conversationHistory.length > HISTORY_LENGTH * 2) {
+      conversationHistory = conversationHistory.slice(-HISTORY_LENGTH * 2);
+    }
   }
 }
 
@@ -145,7 +144,7 @@ function removeTyping() {
 function getMessageHistory(n = HISTORY_LENGTH) {
   return conversationHistory.slice(-n).map(msg => ({
     role: msg.role,
-    content: msg.text
+    content: msg.content
   }));
 }
 
@@ -170,10 +169,10 @@ async function callWorkerAPI(userMessage) {
     }
     
     const data = await response.json();
-    return data.answer || 'I couldn\'t generate a response. Please try again.';
+    return { answer: data.answer || 'I couldn\'t generate a response. Please try again.', isError: !data.answer };
   } catch (error) {
     console.error('Chat API error:', error);
-    return 'Sorry, I encountered an error connecting to my AI brain. Please try again in a moment!';
+    return { answer: 'Sorry, I encountered an error connecting to my AI brain. Please try again in a moment!', isError: true };
   }
 }
 
@@ -353,11 +352,11 @@ async function handleChat() {
     showTyping();
     
     // Call API
-    const response = await callWorkerAPI(val);
-    
+    const { answer, isError } = await callWorkerAPI(val);
+
     // Remove typing and add response
     removeTyping();
-    addMessage(response, 'ai');
+    addMessage(answer, 'ai', !isError);
     
     // Increment question count
     const used = parseInt(localStorage.getItem('chatQuestionsUsed') || '0');
@@ -371,7 +370,7 @@ async function handleChat() {
   } catch (error) {
     console.error('Chat error:', error);
     removeTyping();
-    addMessage('Sorry, something went wrong. Please try again!', 'ai');
+    addMessage('Sorry, something went wrong. Please try again!', 'ai', false);
   } finally {
     isSending = false;
     input.disabled = false;
