@@ -708,10 +708,16 @@ h2 {
 ═══════════════════════════════════════ */
 #projects { border-top: 1px solid var(--border-color); }
 
+#projects .section-wrap {
+  max-width: 100%;
+  padding: 3rem 2.5rem;
+}
+
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: 1rem;
+  width: 100%;
 }
 
 .project-card {
