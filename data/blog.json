@@ -21,6 +21,7 @@
           "Cloudflare Worker — receives the message and history, builds a prompt with all of Krishna's context, calls Llama 3.1, and returns { answer: '...' }",
           "Cloudflare Workers AI — hosts and runs @cf/meta/llama-3.1-8b-instruct, no setup required"
         ]},
+        { "type": "image", "src": "../assets/images/ko.png", "alt": "Portfolio chat system architecture diagram" },
         { "type": "code", "lang": "json", "text": "{\n  \"message\": \"What projects has Krishna built?\",\n  \"history\": [\n    { \"role\": \"user\", \"content\": \"Is he available to hire?\" },\n    { \"role\": \"assistant\", \"content\": \"Yes! Krishna is open to...\" }\n  ]\n}" },
         { "type": "paragraph", "text": "The worker takes that payload, prepends a system prompt packed with everything about me — education, skills, experience, projects, certifications — and sends the full conversation to Llama. The model responds and the worker returns the answer as JSON." },
         { "type": "heading", "text": "The Prompt Engineering Problem" },
