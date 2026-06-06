@@ -169,7 +169,8 @@ function openModal(i) {
   document.getElementById('modalActionLinks').innerHTML =
     [
       p.github ? `<a href="${p.github}" target="_blank" class="btn btn-sm">↗ GitHub</a>` : '',
-      p.live ? `<a href="${p.live}" target="_blank" class="btn btn-sm btn-ghost">◈ Live Demo</a>` : ''
+      p.live ? `<a href="${p.live}" target="_blank" class="btn btn-sm btn-ghost">◈ Live Demo</a>` : '',
+      p.blog ? `<a href="${p.blog}" class="btn btn-sm btn-ghost">✎ Blog Post</a>` : ''
     ].filter(Boolean).join('');
 
   document.getElementById('modalAbout').innerHTML = renderParagraphs(p.about || '');
@@ -191,6 +192,7 @@ function openModal(i) {
   const footerLinks = [];
   if (p.github) footerLinks.push(`<a href="${p.github}" target="_blank">GitHub</a>`);
   if (p.live) footerLinks.push(`<a href="${p.live}" target="_blank">Live Demo</a>`);
+  if (p.blog) footerLinks.push(`<a href="${p.blog}">Blog Post</a>`);
   document.getElementById('modalFooter').innerHTML =
     footerLinks.length
       ? footerLinks.join(' • ')

@@ -221,7 +221,8 @@
     "aim": "Build a real AI assistant for my portfolio that answers recruiter questions about me for £0 per month.",
     "category": "AI / Web",
     "github": null,
-    "live": null,
+    "live": "https://bhargavramakrishna.github.io/#chat",
+    "blog": "pages/blog.html#cloudflare-portfolio-chat",
     "period": "2025"
   },
   {
