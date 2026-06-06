@@ -23,6 +23,8 @@
           return `<ul class="bm-list">${block.items.map(i => `<li>${i}</li>`).join('')}</ul>`;
         case 'code':
           return `<pre class="bm-code"><code>${escapeHtml(block.text)}</code></pre>`;
+        case 'image':
+          return `<img class="bm-image" src="${block.src}" alt="${block.alt || ''}">`;
         default:
           return '';
       }
