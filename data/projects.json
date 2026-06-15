@@ -7,22 +7,55 @@
 [
   {
     "title": "AI Dungeon Generator",
-    "desc": "AI-driven dungeon generation using Deep Convolutional GANs and procedural algorithms inside Unreal Engine.",
-    "about": "Built an AI-driven dungeon generation system that automatically creates coherent dungeon layouts inside Unreal Engine using deep learning and procedural algorithms.\n\nThe core of the system was a DCGAN trained on dungeon layout data, augmented with 90, 180 and 270 degree rotations to improve generalisation. A series of corrective algorithms then cleaned and validated the generated layouts — enforcing room boundaries, placing doors between connected rooms, and using A* pathfinding to connect any isolated regions into one coherent dungeon.",
-    "takeaways": "This project taught me how to bridge the gap between a trained ML model and a real game engine — something very few tutorials cover. The hardest part wasn't the model itself but making the output actually usable in a game context. I learned that post-processing and corrective systems are just as important as the model.",
+    "desc": "I built an AI-driven dungeon generator inside Unreal Engine using Deep Convolutional GANs and procedural algorithms.",
+    "about": "I built an AI-driven dungeon generation system that automatically creates coherent dungeon layouts inside Unreal Engine using deep learning and procedural algorithms.The core of the system was a DCGAN trained on dungeon layout data, augmented with 90°, 180°, and 270° rotations to improve generalisation. I also developed a series of corrective algorithms to clean and validate the generated layouts by enforcing room boundaries, placing doors between connected rooms, and using A* pathfinding to connect isolated regions into a single coherent dungeon.",
+    "takeaways": "This project taught me how to bridge the gap between a trained ML model and a real game engine — something very few tutorials cover. The hardest part wasn't the model itself but making the output actually usable in a game context. I learned that post-processing and corrective systems are just as important as the model",
     "thanks": "",
     "tags": ["Unreal Engine", "Python", "DCGAN", "Deep Learning", "A* Pathfinding", "Procedural Gen"],
-    "image": "assets/images/gp.png",
+    "image": "assets/images/gpp.gif",
     "images": [],
     "aim": "Design an intelligent system that generates unique playable dungeon layouts combining deep learning with rule-based correction.",
     "category": "AI / Game Dev",
     "github": "https://github.com/NavJav256/AI_frontend",
     "live": null,
-    "period": "Jun 2024 – Aug 2024"
+    "period": "Jun 2024 – Aug 2024",
+    "featured": true
+  },
+    {
+    "title": "GA Enemies — Adaptive Game AI",
+    "desc": "I built enemy AI that evolves using a Genetic Algorithm based on player performance, creating dynamic difficulty scaling.",
+    "about": " I developed an adaptive enemy AI system in Unity where enemy strength dynamically evolves based on how well the player performs. Using a Genetic Algorithm, I select and mutate enemy attributes — speed, strength, and difficulty — creating a natural progression that never feels static",
+    "takeaways": "This project showed me how evolutionary algorithms can replace hardcoded difficulty curves — a much more elegant and scalable solution. It also deepened my understanding of how AI can make games feel alive rather than scripted.",
+    "thanks": "",
+    "tags": ["Unity", "C#", "Genetic Algorithms", "Game AI", "Adaptive Difficulty"],
+    "image": "assets/images/GAAA.gif",
+    "images": [],
+    "aim": "Create an adaptive enemy system that evolves difficulty based on player performance using evolutionary algorithms.",
+    "category": "Game Dev / AI",
+    "github": null,
+    "live": null,
+    "period": "Feb 2024 – Apr 2024",
+    "featured": true
+  },
+  {
+    "title": "NPC AI — Utility AI & Deep Q-Learning",
+    "desc": "My MSc dissertation — a novel NPC decision-making system combining Utility AI and Deep Q-Learning for smarter game behaviour.",
+    "about": "My MSc dissertation explored a novel approach to NPC decision-making by combining Utility AI with Deep Q-Learning. Traditional game AI often relies on rigid behaviour trees — my research asked whether a hybrid approach could produce more intelligent and adaptive NPCs.\n\nThe Utility AI component allowed NPCs to weigh multiple competing goals simultaneously, while the DQL component enabled them to learn optimal strategies through gameplay experience. The result was NPCs that felt genuinely responsive rather than scripted.",
+    "takeaways": "This was the most intellectually challenging thing I have built. Combining two AI paradigms that weren't designed to work together required a lot of creative problem solving. It also gave me a deep appreciation for how much thought goes into making game characters feel alive.",
+    "thanks": "",
+    "tags": ["Python", "Deep Q-Learning", "Utility AI", "Game AI", "Neural Networks"],
+    "image": "assets/images/ee.gif",
+    "images": [],
+    "aim": "Research and implement a novel NPC decision-making system combining Utility AI with Deep Q-Learning for smarter game behaviour.",
+    "category": "AI Research / Game Dev",
+    "github": "https://github.com/bhargavramakrishna/NPC-AI-Utility-AI-Deep-Q-Learning",
+    "live": null,
+    "period": "2023 – 2024",
+    "featured": true
   },
   {
     "title": "Dialogue System — Unity",
-    "desc": "A scalable dialogue system in Unity/C# with dynamic Q&A progression, UI integration and player-driven narrative flow.",
+    "desc": "I built a scalable dialogue system in Unity/C# with dynamic Q&A progression, UI integration and player-driven narrative flow.",
     "about": "Built a custom dialogue system in Unity as part of a multidisciplinary group project alongside students from UX, game design, programming and animation. The system allows players to progress through sets of questions and answers, with the UI updating dynamically based on player input.\n\nA slider mechanic tracks player progression and triggers events like revealing hidden objects or activating animations. The system was built around a reusable Question class structure and managed through coroutines for smooth timed interactions.",
     "takeaways": "Working in a multidisciplinary team was genuinely eye-opening. Everyone solves problems differently — designers think in flows, animators think in timing, developers think in logic. Learning to communicate across those boundaries made me a better collaborator and a better developer.",
     "thanks": "Thanks to my teammates from UX, game design and animation for their contributions and feedback throughout the project.",
@@ -37,7 +70,7 @@
   },
   {
     "title": "Dementia Puzzle Game",
-    "desc": "A volunteer project adapting a puzzle game to support people living with dementia through engaging, accessible digital interactions.",
+    "desc": "I adapted a puzzle game as a volunteer to support people living with dementia through engaging, accessible digital interactions.",
     "about": "Contributed to a volunteer project aimed at supporting people living with dementia by keeping their minds active through engaging digital interactions. Working alongside master's students from another course, I helped adapt an existing puzzle game to better fit the needs of its users.\n\nMy design changes introduced surprise mechanics — the board flipping upside down and colors shifting unexpectedly — to hold attention and stimulate focus. Time limits and score-based progression encouraged engagement without overwhelming players.",
     "takeaways": "Designing for accessibility taught me that good design is invisible. Every mechanic had to be tested against the question: is this fun or is this confusing? That discipline made me a more thoughtful designer across all my work.",
     "thanks": "Special thanks to the volunteer team and fellow master's students who collaborated on this project. It was a privilege to work on something with real positive social impact.",
@@ -52,7 +85,7 @@
   },
   {
     "title": "Spot the Difference Game",
-    "desc": "A puzzle game challenging players to spot subtle differences between two images within a time limit, training visual perception and focus.",
+    "desc": "I designed a puzzle game where players spot subtle differences between two images under a time limit, training visual perception and focus.",
     "about": "Designed and implemented a Spot the Difference puzzle game that challenges players to carefully observe two images and identify subtle differences within a time limit. The game features progressive difficulty — differences become harder to spot as the game advances — alongside a scoring system that rewards quick accurate answers and visual feedback when differences are successfully found.",
     "takeaways": "This project taught me how much thought goes into a deceptively simple game. Balancing challenge and accessibility, making sure the player always feels fairly treated, and designing feedback that feels rewarding rather than patronising — all of that takes real care and iteration.",
     "thanks": "",
@@ -67,7 +100,7 @@
   },
   {
   "title": "2.5D Puzzle Game — P1 Games",
-  "desc": "A 2.5D puzzle game built at P1 Game Company featuring player movement systems, object fading mechanics and dual character switching.",
+  "desc": "A 2.5D puzzle game I built at P1 Game Company featuring player movement systems, object fading mechanics and dual character switching.",
   "aim": "Implement core gameplay systems for a 2.5D puzzle game in a professional studio environment, focusing on smooth player mechanics and interactive puzzle elements.",
   "about": "Developed as part of a team project at P1 Game Company where I worked as a programmer. My main responsibilities included implementing player movement systems and programming puzzle mechanics such as making walls turn invisible to aid navigation when solving challenges.\n\nThe project involved three core systems — a Rigidbody-based movement controller that rotates the player sprite to face the direction of movement, an ObjectFader that smoothly interpolates material opacity to reveal or hide puzzle elements, and a PlayerSwitch system that seamlessly transfers control between two characters while updating the camera and UI dynamically.",
   "takeaways": "Working at a real game company was a completely different experience from university projects. Deadlines were real, standards were higher, and every system had to integrate cleanly with other people's work. I learned how to write code that other developers can actually use — clean, well structured and predictable. The ObjectFader in particular taught me how much polish matters — a smooth fade feels completely different from an instant toggle.",
@@ -88,7 +121,7 @@
   },
   {
   "title": "2D Shooter Game",
-  "desc": "A 2D shooter where players pilot a rocket through waves of enemies, collecting fuel and power-ups while upgrading speed, health and fuel capacity.",
+  "desc": "A 2D shooter I built at P1 Games where players pilot a rocket through waves of enemies, collecting fuel and power-ups while upgrading speed, health and fuel capacity.",
   "aim": "Implement enemy AI systems, procedural spawning and UI menus for a 2D shooter game in a team environment.",
   "about": "Developed as part of a team project at P1 Game Company where I worked as the lead programmer (P1). Players pilot a rocket through waves of enemies, surviving as long as possible while collecting fuel and power-ups and unlocking upgrades for speed, health and fuel capacity.\n\nMy responsibilities covered two main areas — enemy systems and UI. For enemies I implemented distinct behaviour patterns for each enemy type: the StormCloud moves back and forth flipping direction when reaching a set distance, the HotAirBalloon takes damage from bullets and randomly spawns fuel or gold pickups on death, and the Airplane spawner procedurally instantiates enemies at random locations on a timed interval. I also built the full menu system including upgrade selection, pause screen and HUD elements.",
   "takeaways": "This project taught me how to design enemy systems that feel varied and fair without being overwhelming. Each enemy needed its own personality — movement pattern, reward, threat level — and balancing all of that required constant playtesting and iteration. I also got much more comfortable with Unity's collision system and learned how procedural spawning can dramatically change the feel of a game without adding much code complexity.",
@@ -110,7 +143,7 @@
 },
 {
   "title": "Multiplayer Game — Photon Unity",
-  "desc": "A real-time multiplayer game built with Photon Unity Networking featuring character selection, abilities, procedural maps, 2D puzzles and networked synchronization.",
+  "desc": "A real-time multiplayer game I built with Photon Unity Networking featuring character selection, abilities, procedural maps, 2D puzzles and networked synchronization.",
   "aim": "Build a fully networked multiplayer game with real-time synchronization, character abilities and dynamic procedural content using Photon Unity Networking.",
   "about": "Developed a real-time multiplayer game using Photon Unity Networking (PUN2) as part of a module at Kingston University. Players join a shared server, select their own character prefab, and explore a procedurally updated map featuring flying islands, portals, dynamic object placement and timer-based 2D puzzles.\n\nMy contributions spanned almost every system in the game. I implemented networked player movement — switching from Rigidbody to CharacterController for better multiplayer responsiveness — and built the character selection system using RPCs to synchronize each player's chosen prefab across all clients. I programmed three special abilities: invisibility (disabling mesh renderers via RPC), steal (Raycast-based artifact theft from other players), and freeze (disabling an enemy's collider for 5 seconds across all clients).\n\nOn the map side I built randomized object placement that generates a different layout every session, portal teleportation, flying island spawn points and a water shader for visual polish. The 2D puzzle system dynamically selects puzzles from a tagged list, integrates with NPC characters that roam within a radius, and uses a shared IPuzzleComponent interface for consistent win, lose and reset logic across all puzzle types.",
   "takeaways": "Multiplayer is genuinely one of the hardest things to program — every system that works perfectly in single player breaks in unexpected ways the moment a second client joins. The biggest lesson was that ownership matters more than anything. Understanding which client owns which object, when to use RPCs versus PhotonView sync, and how to avoid race conditions taught me more about software architecture than any other project I have done.",
@@ -135,23 +168,8 @@
   "images": []
 },
   {
-    "title": "GA Enemies — Adaptive Game AI",
-    "desc": "Enemy AI that evolves using a Genetic Algorithm based on player performance, creating dynamic difficulty scaling.",
-    "about": "Developed an adaptive enemy AI system in Unity where enemy strength dynamically evolves based on how well the player performs. Using a Genetic Algorithm, the system selects and mutates enemy attributes — speed, strength and difficulty — creating a natural progression that never feels static.\n\nA loot system complements this by rewarding players with bonus attributes from enemy drops, allowing player progression to keep pace with the evolving enemies.",
-    "takeaways": "This project showed me how evolutionary algorithms can replace hardcoded difficulty curves — a much more elegant and scalable solution. It also deepened my understanding of how AI can make games feel alive rather than scripted.",
-    "thanks": "",
-    "tags": ["Unity", "C#", "Genetic Algorithms", "Game AI", "Adaptive Difficulty"],
-    "image": null,
-    "images": [],
-    "aim": "Create an adaptive enemy system that evolves difficulty based on player performance using evolutionary algorithms.",
-    "category": "Game Dev / AI",
-    "github": null,
-    "live": null,
-    "period": "Feb 2024 – Apr 2024"
-  },
-  {
     "title": "LLM & RAG Prototypes",
-    "desc": "Series of LLM-powered applications and RAG pipelines built during freelance AI development work.",
+    "desc": "A series of LLM-powered applications and RAG pipelines I built during my freelance AI development work.",
     "about": "As a freelance AI developer I built multiple LLM-powered applications and RAG pipelines using LangChain, Hugging Face and vector databases. Each prototype explored a different aspect of production AI — from document querying to agent-based systems.\n\nFastAPI backends made these systems accessible as REST APIs, and I experimented with Reinforcement Learning agents to explore autonomous decision making.",
     "takeaways": "Freelance work taught me something courses never do — how to ship. Every project had a real deadline, a real user, and real consequences if it broke. I got faster, more pragmatic, and much better at debugging under pressure.",
     "thanks": "",
@@ -162,26 +180,12 @@
     "category": "AI / Backend",
     "github": null,
     "live": null,
-    "period": "Feb 2025 – Present"
-  },
-  {
-    "title": "NPC AI — Utility AI & Deep Q-Learning",
-    "desc": "MSc dissertation: NPC decision-making system combining Utility AI and Deep Q-Learning for smarter game behaviour.",
-    "about": "My MSc dissertation explored a novel approach to NPC decision-making by combining Utility AI with Deep Q-Learning. Traditional game AI often relies on rigid behaviour trees — my research asked whether a hybrid approach could produce more intelligent and adaptive NPCs.\n\nThe Utility AI component allowed NPCs to weigh multiple competing goals simultaneously, while the DQL component enabled them to learn optimal strategies through gameplay experience. The result was NPCs that felt genuinely responsive rather than scripted.",
-    "takeaways": "This was the most intellectually challenging thing I have built. Combining two AI paradigms that weren't designed to work together required a lot of creative problem solving. It also gave me a deep appreciation for how much thought goes into making game characters feel alive.",
-    "thanks": "",
-    "tags": ["Python", "Deep Q-Learning", "Utility AI", "Game AI", "Neural Networks"],
-    "image": null,
-    "images": [],
-    "aim": "Research and implement a novel NPC decision-making system combining Utility AI with Deep Q-Learning for smarter game behaviour.",
-    "category": "AI Research / Game Dev",
-    "github": null,
-    "live": null,
-    "period": "2023 – 2024"
+    "period": "Feb 2025 – Present",
+    "featured": true
   },
   {
     "title": "Sentiment Analysis NLP",
-    "desc": "Natural language processing model to detect sentiment in text data.",
+    "desc": "I built a natural language processing model to detect sentiment in text data.",
     "about": "Built a sentiment analysis system using NLP techniques to classify text as positive, negative or neutral. Used Python and various NLP libraries to preprocess and analyse text data.",
     "takeaways": "The project reinforced how important data preparation is for NLP. I learned to balance preprocessing, feature extraction and model selection to keep the system accurate and reliable.",
     "thanks": "",
@@ -196,8 +200,8 @@
   },
   {
     "title": "AI Scam Detection",
-    "desc": "AI-powered system to detect and flag potential scam messages and content.",
-    "about": "Currently in development, this AI system analyses messages and content to identify potential scams using machine learning and pattern recognition. It focuses on spotting suspicious language patterns and structural cues in text data.",
+    "desc": "I'm building an AI-powered system to detect and flag potential scam messages and content.",
+    "about": "Currently in development, I'm building an AI system that analyses messages and content to identify potential scams using machine learning and pattern recognition. My focus is on spotting suspicious language patterns and structural cues in text data.",
     "takeaways": "Working on scam detection stressed the importance of precision and false-positive control. I learned that models must be carefully tuned and backed by strong feature engineering to avoid flagging legitimate content.",
     "thanks": "",
     "tags": ["Python", "AI", "Machine Learning", "NLP"],
@@ -207,7 +211,8 @@
     "category": "AI / Safety",
     "github": null,
     "live": null,
-    "period": "2026 – Present"
+    "period": "2026 – Present",
+    "featured": true
   },
   {
     "title": "Portfolio AI Chatbot",
@@ -223,7 +228,8 @@
     "github": null,
     "live": "https://bhargavramakrishna.github.io/#chat",
     "blog": "pages/blog.html#cloudflare-portfolio-chat",
-    "period": "2025"
+    "period": "2025",
+    "featured": true
   },
   {
     "title": "Job Description Matcher",
@@ -242,7 +248,7 @@
   },
   {
     "title": "Static Website Projects",
-    "desc": "Collection of static websites built while learning web development.",
+    "desc": "A collection of static websites I built while learning web development.",
     "about": "Built multiple static websites during the early stages of learning web development. Experimented with HTML, CSS and JavaScript to create responsive and interactive web pages.",
     "takeaways": "These projects taught me the fundamentals of clean markup, responsive layout and cross-browser design. They also gave me a strong foundation for later, more advanced frontend work.",
     "thanks": "",
@@ -257,7 +263,7 @@
   },
   {
     "title": "RAG Pipeline Prototype",
-    "desc": "Retrieval Augmented Generation pipeline for intelligent document querying.",
+    "desc": "I built a Retrieval Augmented Generation pipeline for intelligent document querying.",
     "about": "Built a RAG pipeline prototype using LangChain and vector databases to enable intelligent document querying. Users can upload documents and ask natural language questions.",
     "takeaways": "The project deepened my understanding of retrieval systems and how to connect them to generative models. I learned the importance of indexing quality and prompt design for reliable results.",
     "thanks": "",
@@ -272,7 +278,7 @@
   },
   {
     "title": "Game AI Research",
-    "desc": "Research project exploring various AI techniques for game development.",
+    "desc": "A research project where I explored various AI techniques for game development.",
     "about": "Conducted research into various AI techniques applicable to game development including pathfinding algorithms, decision trees, finite state machines and neural networks.",
     "takeaways": "Research like this reinforced how important rigorous testing and evaluation are for game AI. I gained clarity on which approaches work best in practice versus theory.",
     "thanks": "",
@@ -287,7 +293,7 @@
   },
   {
     "title": "FastAPI Backend",
-    "desc": "RESTful API backend built with FastAPI for AI model serving.",
+    "desc": "I built a production-ready RESTful API with FastAPI for serving AI model inference.",
     "about": "Built a production-ready REST API using FastAPI to serve machine learning models. Includes endpoints for model inference, data validation and error handling.",
     "takeaways": "This backend work strengthened my ability to turn research prototypes into production services. I learned how to handle validation, performance and reliability in real API systems.",
     "thanks": "",
@@ -302,7 +308,7 @@
   },
   {
     "title": "Unity Game Project",
-    "desc": "Complete game built in Unity with custom gameplay mechanics.",
+    "desc": "A complete game I built in Unity with custom gameplay mechanics, UI systems and game logic in C#.",
     "about": "Developed a complete game in Unity with custom gameplay mechanics, UI systems and game logic written in C#. Part of the game development work at [P1] Games.",
     "takeaways": "Shipping a full Unity game taught me how to keep systems modular and maintainable. I also learned how to polish the player experience with responsive controls and feedback.",
     "thanks": "",

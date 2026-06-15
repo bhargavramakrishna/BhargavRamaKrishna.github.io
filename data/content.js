@@ -7,19 +7,17 @@ const CONTENT = {
 
   hero: {
     availability: 'Available for opportunities · Rugby, UK',
-    firstName: 'KRISHNA',
-    lastName: 'CHITRALA',
-    role: 'AI & Software Developer',
-    degree: 'MSc Computer Games & AI',
-    location: '◈ Open to UK & India',
+    firstName: 'Krishna',
+    lastName: 'Chitrala',
+    comment: '// AI & Software Developer · MSc Distinction',
+    role: 'const role = "building LLM products & intelligent systems"',
+    tagline: '<span class="syn-cm">// </span>I take hard problems and build <span class="syn-fn">AI systems</span> that actually solve them. From <span class="syn-fn">RAG pipelines</span> to <span class="syn-fn">game AI</span> — end to end, in production.',
     buttons: [
-      { text: 'View Projects', href: '#projects', style: 'primary' },
-      { text: 'Ask AI About Me', href: '#chat', style: 'ghost' },
-      { text: 'LinkedIn ↗', href: 'https://www.linkedin.com/in/bhargav-rama-krishna-chitrala-1b36a2189', style: 'ghost', target: '_blank' },
-      { text: 'Contact', href: '#contact', style: 'ghost' },
-      { text: 'Project Timeline', href: 'pages/timeline.html', style: 'ghost' },
-      { text: 'Blog', href: 'pages/blog.html', style: 'ghost' },
-      { text: 'See How I Match Your Role', href: '#match', style: 'ghost' }
+      { text: 'view projects', href: '#projects', style: 'primary' },
+      { text: 'open terminal', href: '#chat', style: 'ghost' },
+      { text: 'linkedin', href: 'https://www.linkedin.com/in/bhargav-rama-krishna-chitrala-1b36a2189', style: 'ghost', target: '_blank' },
+      { text: 'contact', href: '#contact', style: 'ghost' },
+      { text: 'blog', href: 'pages/blog.html', style: 'ghost' }
     ]
   },
 

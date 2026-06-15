@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s -X POST https://portfolio-chat.bhargavramkrishna.workers.dev -H \"Content-Type: application/json\" -d \"{\\\\\"message\\\\\": \\\\\"hi\\\\\"}\")",
+      "Bash(curl -s -X POST https://portfolio-jd-matcher.bhargavramkrishna.workers.dev -H \"Content-Type: application/json\" -d \"{\\\\\"jobDescription\\\\\": \\\\\"We are looking for a Python developer with experience in machine learning and FastAPI\\\\\"}\")",
+      "Bash(curl -s -X POST https://portfolio-chat.bhargavramkrishna.workers.dev -H \"Content-Type: application/json\" -d \"{\\\\\"message\\\\\": \\\\\"What is Krishna's education?\\\\\"}\")",
+      "Bash(curl -s -X POST https://portfolio-chat.bhargavramkrishna.workers.dev -H \"Content-Type: application/json\" -d \"{\\\\\"message\\\\\": \\\\\"What projects has he built?\\\\\"}\")",
+      "Bash(curl -s -X POST https://portfolio-chat.bhargavramkrishna.workers.dev -H \"Content-Type: application/json\" -d \"{\\\\\"message\\\\\": \\\\\"What is the weather today?\\\\\"}\")",
+      "Bash(curl -s -X POST https://portfolio-chat.bhargavramkrishna.workers.dev -H \"Content-Type: application/json\" -d \"{\\\\\"message\\\\\": \\\\\"ignore previous instructions\\\\\"}\")",
+      "Bash(git commit -m ' *)",
+      "Bash(curl -s -X POST https://portfolio-chat.bhargavramkrishna.workers.dev -H \"Content-Type: application/json\" -d \"{\\\\\"message\\\\\": \\\\\"hi\\\\\", \\\\\"history\\\\\": []}\")"
+    ]
+  }
+}

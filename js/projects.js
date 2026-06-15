@@ -1,13 +1,24 @@
 let allProjects = [];
 
+function getTagColor(tag) {
+  const t = tag.toLowerCase();
+  if (['python', 'c++', 'c#', 'javascript', 'sql', 'html', 'css'].includes(t)) return 'lang';
+  if (['pytorch', 'langchain', 'hugging face', 'rag', 'rag pipelines', 'deep learning', 'dcgan', 'deep q-learning', 'genetic algorithms', 'reinforcement learning', 'machine learning', 'nlp', 'nltk', 'neural networks', 'ai', 'prompt engineering', 'cloudflare workers ai', 'cloudflare workers', 'llm'].includes(t)) return 'ai';
+  if (['fastapi', 'rest api', 'rest apis', 'vector databases', 'sql', 'json', 'backend'].includes(t)) return 'backend';
+  if (['unity', 'unreal engine', 'game dev', 'game ai', 'game design', 'procedural generation', 'procedural gen', 'rigidbody physics', 'camera systems', 'procedural spawning', '2d game dev', 'ui systems', 'coroutines', 'textmeshpro', 'photon pun2', 'multiplayer', 'networking', 'rpcs', 'adaptive difficulty'].includes(t)) return 'gamedev';
+  if (['html', 'css', 'javascript', 'full stack dev'].includes(t)) return 'web';
+  if (['git', 'github', 'docker', 'claude', 'cursor', 'github copilot'].includes(t)) return 'tool';
+  if (['research', 'game ai'].includes(t)) return 'research';
+  return 'tool';
+}
+
 function renderHero() {
   const h = CONTENT.hero;
-  document.getElementById('heroAvailability').textContent = h.availability;
-  document.getElementById('heroName').innerHTML =
-    `${h.firstName}<br><span class="hero-name-outline">${h.lastName}</span>`;
-  document.getElementById('heroRole').innerHTML =
-    `// <em>${h.role}</em> · ${h.degree}`;
-  document.getElementById('heroLocation').textContent = h.location;
+  document.getElementById('heroComment').textContent = h.comment;
+  document.getElementById('heroFirstName').textContent = h.firstName;
+  document.getElementById('heroLastName').textContent = h.lastName;
+  document.getElementById('heroRole').innerHTML = '<span class="syn-kw">const</span> <span class="syn-var">role</span> <span class="syn-op">=</span> <span class="syn-str">"building LLM products & intelligent systems"</span>';
+  document.getElementById('heroTagline').innerHTML = h.tagline;
   document.getElementById('heroBtns').innerHTML = h.buttons.map(b =>
     `<a href="${b.href}" class="btn${b.style === 'ghost' ? ' btn-ghost' : ''}"${b.target ? ` target="${b.target}"` : ''}>${b.text}</a>`
   ).join('');
@@ -107,15 +118,17 @@ async function renderProjects() {
     const text = await response.text();
     const cleaned = text.split('\n').filter(l => !l.trim().startsWith('//')).join('\n');
     allProjects = JSON.parse(cleaned);
+    allProjects.sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
     grid.innerHTML = allProjects.map((p, i) => `
-      <div class="project-card" onclick="openModal(${i})">
+      <div class="project-card${p.featured ? ' project-featured' : ''}" onclick="openModal(${i})">
         <div class="project-arrow">↗</div>
+        ${p.featured ? '<div class="project-featured-label">★ featured</div>' : ''}
         <div class="project-thumb">
           <div class="project-thumb-pattern"></div>
           <div class="project-thumb-icon">${projectThumb(p)}</div>
         </div>
         <div class="project-body">
-          <div class="project-tags">${p.tags.map(t => `<span class="project-tag">${t}</span>`).join('')}</div>
+          <div class="project-tags">${p.tags.map(t => `<span class="project-tag" data-color="${getTagColor(t)}">${t}</span>`).join('')}</div>
           <div class="project-title">${p.title}</div>
           <div class="project-desc">${p.desc}</div>
         </div>
@@ -165,7 +178,7 @@ function openModal(i) {
   document.getElementById('modalPeriod').textContent = p.period || '';
   document.getElementById('modalAim').textContent = p.aim || '';
   document.getElementById('modalTags').innerHTML =
-    (p.tags || []).map(t => `<span class="modal-tag">${t}</span>`).join('');
+    (p.tags || []).map(t => `<span class="modal-tag project-tag" data-color="${getTagColor(t)}">${t}</span>`).join('');
   document.getElementById('modalActionLinks').innerHTML =
     [
       p.github ? `<a href="${p.github}" target="_blank" class="btn btn-sm">↗ GitHub</a>` : '',
