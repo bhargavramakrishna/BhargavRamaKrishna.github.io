@@ -2508,3 +2508,115 @@ footer span { color: #58a6ff; }
   background: #161b22;
   border: 0.5px solid #21262d;
 }
+
+/* ═══════════════════════════════════════
+   BLOG MODAL CONTENT
+═══════════════════════════════════════ */
+.bm-title,
+.blog-modal-title,
+.blog-modal h2,
+.blog-modal h3 {
+  color: #f0f6fc;
+}
+
+.bm-subtitle,
+.blog-modal-subtitle {
+  color: #8b949e;
+}
+
+.bm-category {
+  color: #58a6ff;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.bm-date,
+.bm-readtime {
+  color: #8b949e;
+  font-size: 12px;
+}
+
+.bm-heading {
+  color: #58a6ff;
+  font-family: var(--font-mono);
+  margin: 1.2em 0 0.5em;
+}
+
+.bm-intro,
+.bm-paragraph,
+.bm-body p,
+.blog-modal p,
+.blog-modal-body p {
+  color: #c9d1d9;
+}
+
+.bm-list {
+  padding-left: 1.4em;
+}
+
+.bm-list li,
+.blog-modal li {
+  color: #c9d1d9;
+}
+
+.bm-code,
+.blog-modal code,
+.blog-modal pre {
+  background: #0d1117;
+  color: #c9d1d9;
+  border: 0.5px solid #21262d;
+  border-radius: 4px;
+  padding: 0.75em 1em;
+  display: block;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 13px;
+}
+
+.bm-code code {
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+}
+
+.bm-image {
+  max-width: 100%;
+  border-radius: 6px;
+  border: 0.5px solid #21262d;
+  margin: 1em 0;
+}
+
+.bm-divider {
+  border: none;
+  border-top: 0.5px solid #21262d;
+  margin: 1em 0;
+}
+
+/* Fallback: catch any black text inside the modal overlay */
+.modal-overlay h2,
+.modal-overlay h3 {
+  color: #f0f6fc;
+}
+
+[class*="blog"] h1,
+[class*="blog"] h2,
+[class*="blog"] h3 {
+  color: #58a6ff;
+}
+
+[class*="blog"] p {
+  color: #c9d1d9;
+}
+
+[class*="blog"] li {
+  color: #c9d1d9;
+}
+
+[class*="blog"] .intro,
+[class*="blog"] .blog-intro {
+  color: #c9d1d9;
+  font-size: 15px;
+}
