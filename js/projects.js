@@ -1,5 +1,34 @@
 let allProjects = [];
 
+function syntaxHighlight(text) {
+  if (!text) return '';
+
+  const fnTerms = ['Python','PyTorch','LangChain','Hugging Face','FastAPI','Unity','Unreal Engine','C\\+\\+','C#','JavaScript','HTML','CSS','SQL','Git','GitHub','Docker','Claude','Cursor','GitHub Copilot','Cloudflare Workers','Cloudflare Workers AI','Photon','PUN2','TextMeshPro','NLTK','REST API','REST APIs','Vector Databases','Llama 3','Llama 3.1'];
+
+  const kwTerms = ['DCGAN','Deep Q-Learning','DQL','Genetic Algorithm','Genetic Algorithms','Reinforcement Learning','Deep Learning','Machine Learning','RAG','NLP','Utility AI','Game AI','Neural Networks','Procedural Generation','Prompt Engineering','Adaptive Difficulty','AI','MSc','Distinction','A\\* Pathfinding','MoE','RPC','RPCs','Rigidbody'];
+
+  const strTerms = ['end to end','production','from scratch','shipped','deployed','freelance','Kingston University','P1 Games','P1 Game Company','Code Camp','Kingston','SRK Institute'];
+
+  let result = text;
+
+  fnTerms.forEach(term => {
+    const regex = new RegExp('(?<![<\\w])(' + term + ')(?![\\w>])', 'g');
+    result = result.replace(regex, '<span class="syn-fn">$1</span>');
+  });
+
+  kwTerms.forEach(term => {
+    const regex = new RegExp('(?<![<\\w])(' + term + ')(?![\\w>])', 'g');
+    result = result.replace(regex, '<span class="syn-kw">$1</span>');
+  });
+
+  strTerms.forEach(term => {
+    const regex = new RegExp('(?<![<\\w])(' + term + ')(?![\\w>])', 'g');
+    result = result.replace(regex, '<span class="syn-str">$1</span>');
+  });
+
+  return result;
+}
+
 function getTagColor(tag) {
   const t = tag.toLowerCase();
   if (['python', 'c++', 'c#', 'javascript', 'sql', 'html', 'css'].includes(t)) return 'lang';
@@ -85,22 +114,6 @@ function renderCerts() {
     </div>`).join('');
 }
 
-function applyMasonry() {
-  const grid = document.getElementById('projectsGrid');
-  if (!grid) return;
-  const style = window.getComputedStyle(grid);
-  const rowGap = parseInt(style.rowGap) || 24;
-  const rowHeight = parseInt(style.gridAutoRows) || 10;
-  grid.querySelectorAll('.project-card').forEach(card => {
-    card.style.gridRowEnd = '';
-  });
-  requestAnimationFrame(() => {
-    grid.querySelectorAll('.project-card').forEach(card => {
-      const rowSpan = Math.ceil((card.scrollHeight + rowGap) / (rowHeight + rowGap));
-      card.style.gridRowEnd = `span ${rowSpan}`;
-    });
-  });
-}
 
 function projectThumb(p) {
   const image = p.images && p.images.length ? p.images[0] : p.image;
@@ -119,21 +132,38 @@ async function renderProjects() {
     const cleaned = text.split('\n').filter(l => !l.trim().startsWith('//')).join('\n');
     allProjects = JSON.parse(cleaned);
     allProjects.sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
-    grid.innerHTML = allProjects.map((p, i) => `
-      <div class="project-card${p.featured ? ' project-featured' : ''}" onclick="openModal(${i})">
-        <div class="project-arrow">↗</div>
-        ${p.featured ? '<div class="project-featured-label">★ featured</div>' : ''}
-        <div class="project-thumb">
-          <div class="project-thumb-pattern"></div>
-          <div class="project-thumb-icon">${projectThumb(p)}</div>
+    grid.innerHTML = allProjects.map((p, i) => p.featured ? `
+      <div class="project-card project-featured" onclick="openModal(${i})">
+        <div class="project-blob"></div>
+        <div class="project-blob project-blob-2"></div>
+        <div class="project-card-inner">
+          <div class="project-featured-label">★ featured</div>
+          <div class="project-arrow">↗</div>
+          <div class="project-thumb">
+            <div class="project-thumb-pattern"></div>
+            <div class="project-thumb-icon">${projectThumb(p)}</div>
+          </div>
+          <div class="project-body">
+            <div class="project-tags">${p.tags.map(t => `<span class="project-tag" data-color="${getTagColor(t)}">${t}</span>`).join('')}</div>
+            <div class="project-title">${p.title}</div>
+            <div class="project-desc">${p.desc}</div>
+          </div>
         </div>
-        <div class="project-body">
-          <div class="project-tags">${p.tags.map(t => `<span class="project-tag" data-color="${getTagColor(t)}">${t}</span>`).join('')}</div>
-          <div class="project-title">${p.title}</div>
-          <div class="project-desc">${p.desc}</div>
+      </div>` : `
+      <div class="project-card" onclick="openModal(${i})">
+        <div class="project-card-inner">
+          <div class="project-arrow">↗</div>
+          <div class="project-thumb">
+            <div class="project-thumb-pattern"></div>
+            <div class="project-thumb-icon">${projectThumb(p)}</div>
+          </div>
+          <div class="project-body">
+            <div class="project-tags">${p.tags.map(t => `<span class="project-tag" data-color="${getTagColor(t)}">${t}</span>`).join('')}</div>
+            <div class="project-title">${p.title}</div>
+            <div class="project-desc">${p.desc}</div>
+          </div>
         </div>
       </div>`).join('');
-    applyMasonry();
   } catch (e) {
     console.error('Failed to load projects:', e);
   }
@@ -169,14 +199,14 @@ function openModal(i) {
     if (!text) return '';
     return text
       .split(/\n\s*\n/)
-      .map(para => `<p class="modal-paragraph">${para.trim()}</p>`)
+      .map(para => `<p class="modal-paragraph">${syntaxHighlight(para.trim())}</p>`)
       .join('');
   }
 
   document.getElementById('modalTitle').textContent = p.title;
   document.getElementById('modalCategory').textContent = p.category || '';
   document.getElementById('modalPeriod').textContent = p.period || '';
-  document.getElementById('modalAim').textContent = p.aim || '';
+  document.getElementById('modalAim').innerHTML = syntaxHighlight(p.aim || '');
   document.getElementById('modalTags').innerHTML =
     (p.tags || []).map(t => `<span class="modal-tag project-tag" data-color="${getTagColor(t)}">${t}</span>`).join('');
   document.getElementById('modalActionLinks').innerHTML =
@@ -226,11 +256,6 @@ document.addEventListener('keydown', e => {
   if (e.key === 'Escape') closeModal({ target: document.getElementById('modalOverlay') });
 });
 
-let _masonryTimer;
-window.addEventListener('resize', () => {
-  clearTimeout(_masonryTimer);
-  _masonryTimer = setTimeout(applyMasonry, 150);
-});
 
 document.addEventListener('DOMContentLoaded', () => {
   renderHero();
